@@ -49,7 +49,7 @@ class SystemUserRepository
 
     public function verifyCode($code)
     {
-        $user = 
+        
     }
 
     public function resetPasswordEmail($email)
