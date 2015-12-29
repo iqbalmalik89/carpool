@@ -53,6 +53,21 @@ class SystemUserController extends Controller
         ]);
     }
 
+
+    public function verifyCode($code)
+    {
+        $resp = $this->repo->verifyCode($code);
+        die();
+        if($resp)
+        {
+            return response()->json(['status' => 'success', 'message' => 'User created successfully', 'code' => 200], 200);            
+        }
+        else
+        {
+            return response()->json(['status' => 'error', 'message' => 'User not registered successfully.', 'code' => 400], 400);
+        }
+    }
+
     public function save(SystemUserRequest $request)
     {
         $resp = $this->repo->save($request);
@@ -143,6 +158,19 @@ class SystemUserController extends Controller
         else
         {
             return response()->json(['status' => 'error', 'message' => 'Old password is not correct', 'code' => 404], 404);
+        }
+    }
+
+    public function resetPasswordEmail(SystemUserRequest $request)
+    {
+        $response = $this->repo->resetPasswordEmail($request->input('email'));
+        if(!empty($response))
+        {
+            return response()->json(['status' => 'success', 'message' => 'Check your email for password reset instruction', 'code' => 200], 200);
+        }
+        else
+        {
+            return response()->json(['status' => 'error', 'message' => 'user not found', 'code' => 404], 404);
         }
     }
 

@@ -33,6 +33,7 @@ Route::group(['prefix' => 'api'], function ()
 	Route::post('system_users/image', 'Auth\SystemUserController@upload');
 	Route::post('auth/login', 'Auth\SystemUserController@login');
 	Route::post('auth/password', 'Auth\SystemUserController@updatePassword');
+	Route::post('auth/forgot', 'Auth\SystemUserController@resetPasswordEmail');
 
 	// Car Make
 	Route::get('car/make', 'Car\MakeController@listing');
@@ -41,7 +42,7 @@ Route::group(['prefix' => 'api'], function ()
 // Admin Routes
 Route::get('/admin', 'App\AdminController@showLogin');
 Route::get('/admin/logout', 'Auth\SystemUserController@logout');
-
+Route::get('/admin/reset_password/{code}', 'App\AdminController@showResetPassword');
 
 
 // Admin auth required routes

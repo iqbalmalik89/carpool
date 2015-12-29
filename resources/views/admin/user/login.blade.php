@@ -75,7 +75,7 @@
                 </div>
 
                 <div class="text-center">
-                  <a href="javascript:void(0);" id="forgotBtn" class="btn btn-success">Send</a>
+                  <a href="javascript:void(0);" id="forgotBtn" class="btn btn-success">Reset Password</a>
                 </div>
               </form>            
             </div>

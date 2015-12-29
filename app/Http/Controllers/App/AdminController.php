@@ -10,17 +10,22 @@ class AdminController extends Controller
 {
   public function showLogin()
   {
-    return view('admin/login');
+    return view('admin/user/login');
   }
 
   public function showDashboard()
   {
-    return view('admin/dashboard');
+    return view('admin/user/dashboard');
+  }
+
+  public function showResetPassword($code)
+  {
+    
   }
 
   public function showUser()
   {
-    return view('admin/users');
+    return view('admin/user/users');
   }
 
   public function showCarMake()
@@ -30,6 +35,6 @@ class AdminController extends Controller
 
   public function showProfile()
   {
-    return view('admin/profile');
+    return view('admin/user/profile');
   }
 }

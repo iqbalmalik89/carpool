@@ -32,6 +32,12 @@ class SystemUserRequest extends FormRequest
 			            'password' => 'required',
 			        ];
 	        	}
+	        	else if($route == 'api/auth/forgot')
+	        	{
+			        return [
+			            'email' => 'required',
+			        ];
+	        	}
 	        	else if($route == 'api/system_users/image')
 	        	{
 					return [

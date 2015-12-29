@@ -4,6 +4,10 @@ $(document).ready( function () {
 		$.login();
 	});
 
+	$( "#forgotBtn" ).click(function() {
+		$.resetPassword();
+	});
+
 	$( "#showForgot" ).click(function() {
 		showHideForgot(1);
 	});
@@ -23,6 +27,28 @@ $(document).ready( function () {
 });
 
 // #################### actual functions ##########################
+
+$.resetPassword = function() {
+	var email = $.trim($('#forgot_email').val());
+	var check = true;
+	check = validateEmail('#forgot_email', '#response_msg', email, check);
+	if(check)
+	{
+		var requestData = {"email":email}
+		var request = ajaxExec('auth/forgot', requestData, 'POST', '#response_msg');
+		request.done(function(data) {
+			if(data.status == 'success')
+			{
+				$.msgShow('#response_msg', data.message, 'success');
+				$('#forgot_email').val('');
+			}
+			else
+			{
+				$.msgShow('#response_msg', data.message, 'error');
+			}
+		});		
+	}
+}
 
 var showHideForgot = function(show) {
 	if(show)

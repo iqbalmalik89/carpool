@@ -10,8 +10,8 @@ class SystemUserRepository
 {
 
     const CACHE = 'system_users-';
-   public function update($request)
-   {
+    public function update($request)
+    {
         $systemUser = SystemUser::find($request->input('user_id'));
         $systemUser->first_name = $request->input('first_name');
         $systemUser->last_name = $request->input('last_name');
@@ -19,7 +19,7 @@ class SystemUserRepository
         $systemUser->email = $request->input('email');
         $systemUser->pic_path = $request->input('image_path');
         if(!empty($request->input('password')))
-           $systemUser->password = \Hash::make($request->input('password'));
+            $systemUser->password = \Hash::make($request->input('password'));
 
         $systemUser->status = $request->input('status', 'active');
 
@@ -37,10 +37,68 @@ class SystemUserRepository
         {
             return false;
         }
-   }
+    }
 
-   public function updateUserSession($userId)
-   {
+    public function getUserByCol($col, $value, $status)
+    {
+        $response = SystemUser::where($col, $value)
+        ->where('status', $status)
+        ->first();
+        return $response;    
+    }
+
+    public function verifyCode($code)
+    {
+        $user = 
+    }
+
+    public function resetPasswordEmail($email)
+    {
+        $user = $this->getUserByCol('email', $email, 'active');
+        if(!empty($user))
+        {
+            // send email to user
+            $code = md5(time());
+            $resetPasswordLink = \URL::to('admin/reset_password/'. $code);
+            $param = array('subject' => 'Carpool - Reset Password',
+                           'email' => $user->email,
+                           'name' => $user->first_name.' '.$user->last_name,
+                           'reset_link' => $resetPasswordLink,
+                          );
+
+            \Mail::send('admin.emails.reset_password', $param, function ($m) use ($param) {
+                $m->from($param['email'], $param['subject']);
+                $m->to($param['email'], $param['name'])->subject($param['subject']);
+            });
+
+            $this->updateCode($user->id, $code);
+
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public function updateCode($userId, $code)
+    {
+        $userData = $this->get($userId, true);
+        if(!empty($userData))
+        {
+            $userData->code = $code;
+            $userData->update();
+            $this->clearCache($userId);
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public function updateUserSession($userId)
+    {
         if(\Session::has('user'))
         {
             if(\Session::get('user')['id'] == $userId)
@@ -49,10 +107,10 @@ class SystemUserRepository
                 $this->setUserSession($userData);
             }
         }
-   }
+    }
 
-   function updatePassword($userId, $password)
-   {
+    function updatePassword($userId, $password)
+    {
         $userData = $this->get($userId, true);
         if(!empty($userData))
         {
@@ -64,10 +122,10 @@ class SystemUserRepository
         {
             return false;
         }
-   }
+    }
 
-   public function verifyPassword($userId, $oldPassword)
-   {
+    public function verifyPassword($userId, $oldPassword)
+    {
         $userData = $this->get($userId, true);
         if(!empty($userData))
         {
@@ -84,10 +142,10 @@ class SystemUserRepository
         {
             return false;
         }
-   }
+    }
 
-   public function save($request)
-   {
+    public function save($request)
+    {
         $systemUser = new SystemUser();
         $systemUser->first_name = $request->input('first_name');
         $systemUser->last_name = $request->input('last_name');
@@ -98,16 +156,16 @@ class SystemUserRepository
         $systemUser->status = $request->input('status');
         if($systemUser->save())
         {
-        	return $systemUser->id;
+            return $systemUser->id;
         }
         else
         {
-        	return false;
+            return false;
         }
-   }
+    }
 
-   public function listing($page, $limit)
-   {
+    public function listing($page, $limit)
+    {
         $response = array('data' => array(), 'paginator' => '');
         if(!empty($limit))
         {
@@ -131,7 +189,7 @@ class SystemUserRepository
 
         return $response;
 
-   }
+    }
 
     public function destroy($id)
     {
@@ -151,13 +209,12 @@ class SystemUserRepository
         }
     }
 
-   public function login($request)
-   {
-        $response = SystemUser::where('email', $request['email'])
-                                ->where('status', 'active')
-                                ->first();
-		if ($response)
-		{
+    public function login($request)
+    {
+        $response = $this->getUserByCol('email', $request['email'], 'active');
+
+        if ($response)
+        {
             if (\Hash::check($request['password'], $response['password']))
             {
                 if($response->status == 'inactive')
@@ -173,12 +230,12 @@ class SystemUserRepository
             {
                 return false;
             }
-		}
-		else
-		{
-			return false;
-		}
-	}
+        }
+        else
+        {
+            return false;
+        }
+    }
 
     public function get($id, $elequent)
     {
