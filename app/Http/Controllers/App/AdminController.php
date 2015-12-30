@@ -5,6 +5,7 @@ namespace App\Http\Controllers\App;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Repositories\SystemUserRepository;
 
 class AdminController extends Controller
 {
@@ -20,7 +21,20 @@ class AdminController extends Controller
 
   public function showResetPassword($code)
   {
-    
+    $repo = new SystemUserRepository();
+    $response = $repo->getUserByCol('code', $code, 'active');
+    if(!empty($response))
+    {
+      return view('admin/user/login', array('access' => true,
+                                            'code' => $code,
+                                            'user_id' => $response->id
+                                           ));
+    }
+    else
+    {
+      return view('admin/user/login', array('access' => false,
+                                           ));
+    }
   }
 
   public function showUser()

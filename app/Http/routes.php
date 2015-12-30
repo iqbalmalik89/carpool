@@ -25,16 +25,20 @@ Route::get('/', function () {
 // API Routes
 Route::group(['prefix' => 'api'], function () 
 {
+	//system users
 	Route::post('system_users', 'Auth\SystemUserController@save');
 	Route::get('system_users/{id}', 'Auth\SystemUserController@get');
 	Route::put('system_users/{id}', 'Auth\SystemUserController@update');
 	Route::delete('system_users/{id}', 'Auth\SystemUserController@destroy');	
 	Route::get('system_users', 'Auth\SystemUserController@listing');	
 	Route::post('system_users/image', 'Auth\SystemUserController@upload');
+
+	// auth Routes
 	Route::post('auth/login', 'Auth\SystemUserController@login');
 	Route::post('auth/password', 'Auth\SystemUserController@updatePassword');
 	Route::post('auth/forgot', 'Auth\SystemUserController@resetPasswordEmail');
-
+	Route::post('auth/update_password', 'Auth\SystemUserController@resetPassword');
+	
 	// Car Make
 	Route::get('car/make', 'Car\MakeController@listing');
 });

@@ -47,9 +47,13 @@ class SystemUserRepository
         return $response;    
     }
 
-    public function verifyCode($code)
+    public function verifyCode($userId, $code)
     {
-        
+        $response = SystemUser::where('id', $userId)
+        ->where('code', $code)
+        ->where('status', 'active')
+        ->first();
+        return $response;
     }
 
     public function resetPasswordEmail($email)

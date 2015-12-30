@@ -44,6 +44,15 @@ class SystemUserRequest extends FormRequest
 			            'user_image_upload' => 'required|image',
 			        ];	        		
 	        	}
+	        	else if($route == 'api/auth/update_password')
+	        	{
+					return [
+			            'code' => 'required',
+			            'user_id' => 'required',			            
+			            'new_password' => 'required',
+			            'confirm_password' => 'required',
+			        ];	        		
+	        	}
 	        	else if($route == 'api/auth/password')
 	        	{
 					return [
