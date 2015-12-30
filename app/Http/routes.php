@@ -35,6 +35,12 @@ Route::group(['prefix' => 'api'], function ()
 	Route::post('auth/password', 'Auth\SystemUserController@updatePassword');
 	Route::post('auth/forgot', 'Auth\SystemUserController@resetPasswordEmail');
 
+	//Country
+	Route::post('country', 'Location\CountryController@save');
+ 	Route::get('country/{id}', 'Location\CountryController@get');
+ 	Route::put('country/{id}', 'Location\CountryController@update');
+ 	Route::delete('country/{id}', 'Location\CountryController@destroy');
+	
 	// Car Make
 	Route::get('car/make', 'Car\MakeController@listing');
 });
@@ -43,7 +49,6 @@ Route::group(['prefix' => 'api'], function ()
 Route::get('/admin', 'App\AdminController@showLogin');
 Route::get('/admin/logout', 'Auth\SystemUserController@logout');
 Route::get('/admin/reset_password/{code}', 'App\AdminController@showResetPassword');
-
 
 // Admin auth required routes
 Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {

@@ -12,6 +12,7 @@ class SystemUserRepository
     const CACHE = 'system_users-';
     public function update($request)
     {
+        echo $request;
         $systemUser = SystemUser::find($request->input('user_id'));
         $systemUser->first_name = $request->input('first_name');
         $systemUser->last_name = $request->input('last_name');
