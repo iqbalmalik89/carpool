@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Response;
 
-class CountryRequest extends FormRequest
+class LanguageRequest extends FormRequest
 {
 
     public function rules()
@@ -55,9 +55,8 @@ class CountryRequest extends FormRequest
 	        	// else
 	        	// {
 			        return [
-			            'country_name' => 'required|unique:country',
-			            'country_code' => 'required',            
-			            'status' => 'required',
+			            'language' => 'required|unique:language',
+			            'code' => 'required',            
 			            
 			        ];	        		
 	        	//}
@@ -66,9 +65,8 @@ class CountryRequest extends FormRequest
 	        {
 				return [
 
-			            'country_name' => 'unique:country,country_name,'.\Request::input('country_id'),
-			            'country_code' => 'required',            
-			            'status' => 'required',
+			            'language' => 'unique:language,language,'.\Request::input('language_id'),
+			            'code' => 'required',            
 		        ];	     
 	        }
 	        case 'PATCH':
