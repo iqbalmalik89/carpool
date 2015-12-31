@@ -80,7 +80,7 @@
                 </div>
                 <div class="text-center">
                   <a href="javascript:void(0);" id="loginBtn" class="btn btn-success">Login  <i class="fa fa-fw fa-unlock-alt"></i></a>
-                  <div id="login_spinner" class="plus-loader" style="width:30px; float:right; height:30px; position:absolute; top:60%; display:none;">Loading…</div>
+<!--                   <div id="login_spinner" class="plus-loader" style="width:30px; float:right; height:30px; position:fixed; top:60%; display:none;">Loading…</div> -->
                 </div>
 
 

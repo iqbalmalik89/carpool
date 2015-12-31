@@ -17,9 +17,9 @@
                       <li class="<?php if($currentRoute == 'admin/dashboard') echo 'active'; ?>"><a href="{{\URL::to('admin/dashboard')}}"><i class="fa fa-bar-chart"></i> <span>Dashboard</span></a></li>
                       <li class="<?php if($currentRoute == 'admin/users') echo 'active'; ?>"><a href="{{\URL::to('admin/users')}}"><i class="fa fa-users"></i> <span>Users</span></a></li>
                       <li class="hasSubmenu">
-                        <a href="#nav-car"><i class="fa fa-car"></i> <span>Car</span></a>
-                        <ul id="nav-car">
-                          <li><a href="{{\URL::to('admin/car/make')}}"><i class="fa fa-cogs"></i> <span>Make</span></a></li>
+                        <a href="#nav-master"><i class="fa fa-car"></i> <span>Master</span></a>
+                        <ul id="nav-master">
+                          <li><a href="{{\URL::to('admin/country')}}"><i class="fa fa-cogs"></i> <span>Country</span></a></li>
                         </ul>
                       </li>
 

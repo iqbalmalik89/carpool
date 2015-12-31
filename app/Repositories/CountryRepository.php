@@ -19,7 +19,7 @@ class CountryRepository
             $country->country_name = $request->input('country_name');
             $country->country_code = $request->input('country_code');
             $country->currency = $request->input('currency');
-            $country->is_active = $request->input('is_active');
+            $country->status = $request->input('status');
         }
         else
         {
@@ -93,7 +93,7 @@ class CountryRepository
         $country->country_name = $request->input('country_name');
         $country->country_code = $request->input('country_code');
         $country->currency = $request->input('currency');
-        $country->is_active = $request->input('is_active');
+        $country->status = $request->input('status');
         if($country->save())
         {
             return $country->id;
@@ -107,6 +107,7 @@ class CountryRepository
     public function listing($page, $limit)
     {
         $response = array('data' => array(), 'paginator' => '');
+
         if(!empty($limit))
         {
             $countries = Country::paginate($limit);
@@ -125,7 +126,7 @@ class CountryRepository
         }
 
         if(!empty($limit))
-            $response = Utility::paginator($response, $country, $limit);
+            $response = Utility::paginator($response, $countries, $limit);
 
         return $response;
 
@@ -172,6 +173,9 @@ class CountryRepository
                 //     $country['profile_pic'] = '';
 
                 $country['updated_at'] = date('Y-m-d', strtotime($country['updated_at']));
+
+                $country['created_at_formatted'] = date('Y-m-d', strtotime($country['created_at']));
+                $country['updated_at_formatted'] = date('Y-m-d', strtotime($country['updated_at']));                
 
                // unset($country['password']);
                 //unset($country['code']);

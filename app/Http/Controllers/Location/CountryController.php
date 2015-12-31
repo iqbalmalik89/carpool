@@ -50,7 +50,7 @@ class CountryController extends Controller
             'country_name' => 'required',
             'country_code' => 'required',
             'currency' => 'required',
-            'is_active' => 'required',
+            'status' => 'required',
         ]);
     }
 

@@ -41,6 +41,7 @@ Route::group(['prefix' => 'api'], function ()
 
 	//Country
 	Route::post('country', 'Location\CountryController@save');
+ 	Route::get('country', 'Location\CountryController@listing');
  	Route::get('country/{id}', 'Location\CountryController@get');
  	Route::put('country/{id}', 'Location\CountryController@update');
  	Route::delete('country/{id}', 'Location\CountryController@destroy');
@@ -60,6 +61,10 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
 	Route::get('dashboard', 'App\AdminController@showDashboard');
 	Route::get('car/make', 'App\AdminController@showCarMake');	
 	Route::get('users', 'App\AdminController@showUser');
+
+	Route::get('country', 'App\AdminController@showCountry');
+
+
 });
 
 

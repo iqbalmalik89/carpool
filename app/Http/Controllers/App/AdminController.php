@@ -51,4 +51,9 @@ class AdminController extends Controller
   {
     return view('admin/user/profile');
   }
+
+  public function showCountry()
+  {
+    return view('admin/location/country');
+  }  
 }
