@@ -40,6 +40,12 @@ Route::group(['prefix' => 'api'], function ()
  	Route::get('country/{id}', 'Location\CountryController@get');
  	Route::put('country/{id}', 'Location\CountryController@update');
  	Route::delete('country/{id}', 'Location\CountryController@destroy');
+
+ 	//Currency
+ 	Route::post('currency', 'Location\CurrencyController@save');
+ 	Route::get('currency/{id}', 'Location\CurrencyController@get');
+ 	Route::put('currency/{id}', 'Location\CurrencyController@update');
+ 	Route::delete('currency/{id}', 'Location\CurrencyController@destroy');
 	
 	// Car Make
 	Route::get('car/make', 'Car\MakeController@listing');
