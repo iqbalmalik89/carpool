@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Location;
+namespace App\Http\Controllers\Language;
 
-use App\Repositories\CountryRepository;
-use App\Http\Requests\CountryRequest;
+use App\Repositories\LanguageRepository;
+use App\Http\Requests\LanguageRequest;
 use App\Library\Uploader;
 
 use Validator;
@@ -12,7 +12,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
-class CountryController extends Controller
+class LanguageController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
@@ -32,7 +32,7 @@ class CountryController extends Controller
      *
      * @return void
      */
-    public function __construct(CountryRepository $systemRepo)
+    public function __construct(LanguageRepository $systemRepo)
     {
         $this->repo = $systemRepo;
         $this->middleware('guest', ['except' => 'getLogout']);
@@ -47,10 +47,8 @@ class CountryController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'country_name' => 'required',
-            'country_code' => 'required',
-            'currency' => 'required',
-            'status' => 'required',
+            'language' => 'required',
+            'code' => 'required',
         ]);
     }
 
@@ -61,41 +59,41 @@ class CountryController extends Controller
         die();
         if($resp)
         {
-            return response()->json(['status' => 'success', 'message' => 'Country created successfully', 'code' => 200], 200);            
+            return response()->json(['status' => 'success', 'message' => 'Language created successfully', 'code' => 200], 200);            
         }
         else
         {
-            return response()->json(['status' => 'error', 'message' => 'Country not registered successfully.', 'code' => 400], 400);
+            return response()->json(['status' => 'error', 'message' => 'Language not registered successfully.', 'code' => 400], 400);
         }
     }
 
-    public function save(CountryRequest $request)
+    public function save(LanguageRepository $request)
     {
         $resp = $this->repo->save($request);
         if($resp)
         {
-            return response()->json(['status' => 'success', 'message' => 'Country created successfully', 'code' => 200], 200);            
+            return response()->json(['status' => 'success', 'message' => 'Language created successfully', 'code' => 200], 200);            
         }
         else
         {
-            return response()->json(['status' => 'error', 'message' => 'Country not registered successfully.', 'code' => 400], 400);
+            return response()->json(['status' => 'error', 'message' => 'Language not registered successfully.', 'code' => 400], 400);
         }
     }
 
-    public function update(CountryRequest $request, $id)
+    public function update(LanguageRepository $request, $id)
     {
         $resp = $this->repo->update($id, $request);
         if($resp)
         {
-            return response()->json(['status' => 'success', 'message' => 'Country updated successfully', 'code' => 200], 200);            
+            return response()->json(['status' => 'success', 'message' => 'Language updated successfully', 'code' => 200], 200);            
         }
         else
         {
-            return response()->json(['status' => 'error', 'message' => 'Country not updated successfully.', 'code' => 400], 400);
+            return response()->json(['status' => 'error', 'message' => 'Language not updated successfully.', 'code' => 400], 400);
         }
     }
 
-    public function listing(CountryRequest $request)
+    public function listing(LanguageRepository $request)
     {
         $page = $request->input('page');
         $limit = $request->input('limit');
@@ -112,24 +110,24 @@ class CountryController extends Controller
         $response = $this->repo->destroy($id);
         if(!empty($response))
         {
-            return response()->json(['status' => 'success', 'message' => 'Country deleted successfully', 'code' => 200], 200);
+            return response()->json(['status' => 'success', 'message' => 'Language deleted successfully', 'code' => 200], 200);
         }
         else
         {
-            return response()->json(['status' => 'error', 'message' => 'Country not found', 'code' => 404], 404);
+            return response()->json(['status' => 'error', 'message' => 'Language not found', 'code' => 404], 404);
         }
     }
 
     public function get($id)
     {
-        $countryData = $this->repo->get($id, false);
-        if(!empty($countryData))
+        $languageData = $this->repo->get($id, false);
+        if(!empty($languageData))
         {
-            return response()->json(['status' => 'success', 'message' => '', 'data' => $countryData, 'code' => 200], 200);
+            return response()->json(['status' => 'success', 'message' => '', 'data' => $languageData, 'code' => 200], 200);
         }
         else
         {
-            return response()->json(['status' => 'error', 'message' => 'Country not found', 'code' => 404], 404);            
+            return response()->json(['status' => 'error', 'message' => 'Language not found', 'code' => 404], 404);            
         }
     }
 

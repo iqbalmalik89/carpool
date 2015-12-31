@@ -47,10 +47,16 @@ Route::group(['prefix' => 'api'], function ()
  	Route::delete('country/{id}', 'Location\CountryController@destroy');
 
  	//Currency
- 	Route::post('currency', 'Location\CurrencyController@save');
- 	Route::get('currency/{id}', 'Location\CurrencyController@get');
- 	Route::put('currency/{id}', 'Location\CurrencyController@update');
- 	Route::delete('currency/{id}', 'Location\CurrencyController@destroy');
+ 	Route::post('currency', 'Currency\CurrencyController@save');
+ 	Route::get('currency/{id}', 'Currency\CurrencyController@get');
+ 	Route::put('currency/{id}', 'Currency\CurrencyController@update');
+ 	Route::delete('currency/{id}', 'Currency\CurrencyController@destroy');
+
+ 	//Language
+ 	Route::post('language', 'Language\LanguageController@save');
+ 	Route::get('language/{id}', 'Language\LanguageController@get');
+ 	Route::put('language/{id}', 'Language\LanguageController@update');
+ 	Route::delete('language/{id}', 'Language\LanguageController@destroy');
 	
 	// Car Make
 	Route::get('car/make', 'Car\MakeController@listing');
