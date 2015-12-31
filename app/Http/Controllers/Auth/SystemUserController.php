@@ -145,6 +145,22 @@ class SystemUserController extends Controller
         return response()->json($resp);
     }
 
+    public function resetPassword(SystemUserRequest $request)
+    {
+        $response = $this->repo->verifyCode($request->input('user_id'), $request->input('code'));
+
+        if(!empty($response))
+        {
+            $this->repo->updatePassword($response->id, $request->input('new_password'));
+            $this->repo->updateCode($response->id, '');            
+            return response()->json(['status' => 'success', 'message' => 'Password updated successfully', 'code' => 200], 200);
+        }
+        else
+        {
+            return response()->json(['status' => 'error', 'message' => 'Old password is not correct', 'code' => 404], 404);
+        }
+    }
+
     public function updatePassword(SystemUserRequest $request)
     {
         $userId = \Session::get('user')['id'];

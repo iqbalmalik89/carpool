@@ -25,18 +25,23 @@ Route::get('/', function () {
 // API Routes
 Route::group(['prefix' => 'api'], function () 
 {
+	//system users
 	Route::post('system_users', 'Auth\SystemUserController@save');
 	Route::get('system_users/{id}', 'Auth\SystemUserController@get');
 	Route::put('system_users/{id}', 'Auth\SystemUserController@update');
 	Route::delete('system_users/{id}', 'Auth\SystemUserController@destroy');	
 	Route::get('system_users', 'Auth\SystemUserController@listing');	
 	Route::post('system_users/image', 'Auth\SystemUserController@upload');
+
+	// auth Routes
 	Route::post('auth/login', 'Auth\SystemUserController@login');
 	Route::post('auth/password', 'Auth\SystemUserController@updatePassword');
 	Route::post('auth/forgot', 'Auth\SystemUserController@resetPasswordEmail');
+	Route::post('auth/update_password', 'Auth\SystemUserController@resetPassword');
 
 	//Country
 	Route::post('country', 'Location\CountryController@save');
+ 	Route::get('country', 'Location\CountryController@listing');
  	Route::get('country/{id}', 'Location\CountryController@get');
  	Route::put('country/{id}', 'Location\CountryController@update');
  	Route::delete('country/{id}', 'Location\CountryController@destroy');
@@ -62,6 +67,10 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
 	Route::get('dashboard', 'App\AdminController@showDashboard');
 	Route::get('car/make', 'App\AdminController@showCarMake');	
 	Route::get('users', 'App\AdminController@showUser');
+
+	Route::get('country', 'App\AdminController@showCountry');
+
+
 });
 
 

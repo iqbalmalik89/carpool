@@ -10,6 +10,7 @@
   <title>::Admin::</title>
   <link href="{{URL::asset('assets/admin_asset/css/vendor/all.css')}}" rel="stylesheet">
   <link href="{{URL::asset('assets/admin_asset/css/app/app.css')}}" rel="stylesheet">
+  <link href="{{URL::asset('assets/shared_asset/css/spinners.css')}}" rel="stylesheet">
   <script src="{{URL::asset('assets/admin_asset/js/modules/config.js')}}"></script>
   <script src="{{URL::asset('assets/admin_asset/js/vendor/all.js')}}"></script>
   <script src="{{URL::asset('assets/admin_asset/js/app/app.js')}}"></script>
@@ -35,6 +36,24 @@
     <div class="row">
 
       <h1>Account Access</h1>
+      {{--*/ $resetDisplay = 'none' /*--}}      
+      {{--*/ $loginDisplay = 'block' /*--}}      
+
+      @if(  empty($code))
+        {{--*/ $code = '' /*--}}
+      @endif
+
+      @if(  empty($user_id))
+        {{--*/ $user_id = '' /*--}}
+      @endif
+
+      @if( ! empty($access) && $access === true)
+          {{--*/ $resetDisplay = 'block' /*--}}
+          {{--*/ $loginDisplay = 'none' /*--}}
+      @elseif( isset($access) && $access === false)
+          {{--*/ $resetDisplay = 'block' /*--}}
+          {{--*/ $loginDisplay = 'none' /*--}}
+      @endif
 
       <div class="col-sm-4 col-sm-offset-4">
         <div class="panel panel-default">
@@ -45,7 +64,7 @@
                 Invalid User or Password
               </div>
 
-            <div id="login_container">
+            <div id="login_container" style="display:{{{$loginDisplay}}}">
               <form role="form" id="login_form">
                 <div class="form-group">
                   <div class="input-group">
@@ -61,11 +80,16 @@
                 </div>
                 <div class="text-center">
                   <a href="javascript:void(0);" id="loginBtn" class="btn btn-success">Login  <i class="fa fa-fw fa-unlock-alt"></i></a>
+<!--                   <div id="login_spinner" class="plus-loader" style="width:30px; float:right; height:30px; position:fixed; top:60%; display:none;">Loading…</div> -->
                 </div>
+
+
+
+
               </form>
             </div>
 
-            <div  id="forgot_container" style="display:none;">
+            <div  id="forgot_container"  style="display:none;">
              <form role="form" action="index.html">
                 <div class="form-group">
                   <div class="input-group">
@@ -80,13 +104,52 @@
               </form>            
             </div>
 
+            <div  id="reset_container"  style="display:{{{$resetDisplay}}}">
+             <form role="form" action="index.html">
+                <input type="hidden" id="code" name="code" value="{{{ $code }}}">
+                <input type="hidden" id="user_id" name="user_id" value="{{{ $user_id }}}">
+
+                <?php
+                  if(isset($access) && $access === true)
+                  {
+                ?>
+                <div class="form-group">
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                    <input type="password" class="form-control" placeholder="New Password" id="new_password" name="new_password">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                    <input type="password" class="form-control" placeholder="Confirm New Password" id="confirm_new_password" name="confirm_new_password">
+                  </div>
+                </div>
+
+                <div class="text-center">
+                  <a href="javascript:void(0);" id="updatePasswordBtn" class="btn btn-success">Update Password</a>
+                </div>
+                <?php 
+                 }
+                 else
+                 {
+                    echo 'Password reset link expired.';
+                 }
+                ?>
+
+
+              </form>            
+            </div>
+
+
           </div>
 
 <!-- forgot starts -->
 <!-- Forgot end           -->
         </div>
 
-        <a href="javascript:void(0);" id="showForgot" class="forgot-pass">
+        <a href="javascript:void(0);" id="showForgot" class="forgot-pass"  style="display:{{{$loginDisplay}}}">
             Forgot your Password?
             <i class="fa fa-question-circle"></i>
         </a>

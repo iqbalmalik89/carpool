@@ -57,8 +57,7 @@ class CountryRequest extends FormRequest
 			        return [
 			            'country_name' => 'required|unique:country',
 			            'country_code' => 'required',            
-			            'currency' => 'required',
-			            'is_active' => 'required',
+			            'status' => 'required',
 			            
 			        ];	        		
 	        	//}
@@ -66,10 +65,10 @@ class CountryRequest extends FormRequest
 	        case 'PUT':
 	        {
 				return [
-		            	'country_name' => 'required|unique:country,country_name,'.\Request::input('country_id'),
+
+			            'country_name' => 'unique:country,country_name,'.\Request::input('country_id'),
 			            'country_code' => 'required',            
-			            'currency' => 'required',
-			            'is_active' => 'required',
+			            'status' => 'required',
 		        ];	     
 	        }
 	        case 'PATCH':
