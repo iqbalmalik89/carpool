@@ -11,12 +11,12 @@ class AdminController extends Controller
 {
   public function showLogin()
   {
-    return view('admin/user/login');
+    return view('admin/system-users/login');
   }
 
   public function showDashboard()
   {
-    return view('admin/user/dashboard');
+    return view('admin/system-users/dashboard');
   }
 
   public function showResetPassword($code)
@@ -25,21 +25,28 @@ class AdminController extends Controller
     $response = $repo->getUserByCol('code', $code, 'active');
     if(!empty($response))
     {
-      return view('admin/user/login', array('access' => true,
+      return view('admin/system-users/login', array('access' => true,
                                             'code' => $code,
                                             'user_id' => $response->id
                                            ));
     }
     else
     {
-      return view('admin/user/login', array('access' => false,
+      return view('admin/system-users/login', array('access' => false,
                                            ));
     }
   }
 
+
+
   public function showUser()
   {
-    return view('admin/user/users');
+    return view('admin/site-users/users');
+  }
+
+  public function showSystemUser()
+  {
+    return view('admin/system-users/users');
   }
 
   public function showCarMake()
@@ -49,11 +56,24 @@ class AdminController extends Controller
 
   public function showProfile()
   {
-    return view('admin/user/profile');
+    return view('admin/system-users/profile');
   }
 
   public function showCountry()
   {
     return view('admin/location/country');
   }  
+
+  public function showLanguage()
+  {
+    return view('admin/location/language');
+  }
+
+  public function showCurrency()
+  {
+    return view('admin/location/currency');
+  }    
+  
+  
+  
 }

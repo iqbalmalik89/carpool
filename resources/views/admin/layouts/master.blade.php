@@ -25,6 +25,8 @@
 
 <body>
 
+<div id="master_overlay"></div>
+
 <div class="modal fade slide-down" id="deletePopup" aria-hidden="true">
   <div class="modal-dialog">
     <div class="v-cell">

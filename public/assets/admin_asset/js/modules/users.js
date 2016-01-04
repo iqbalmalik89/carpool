@@ -46,8 +46,12 @@ $.resetUserForm = function()
 
 $.getUserListing = function(page)
 {
+	$.showLoading();
 	var requestData = {"page":page, limit:12};
 	var request = ajaxExec('system_users', requestData, 'get', '#response_msg', $.userlisting);
+	request.done(function(data) {	
+		$.hideLoading();
+	});
 }
 
 $.showEditPopup = function(userId)
@@ -94,7 +98,6 @@ $.deleteUser = function(userId)
 	var requestData  = {};
     var request = ajaxExec('system_users/' + userId, requestData, 'delete', '#response_msg');
 	request.done(function(data) {
-
 		if(data.status == 'success' )
 		{
 			$.msgShow('#response_msg', data.message, 'success');

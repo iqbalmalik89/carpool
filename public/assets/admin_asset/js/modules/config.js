@@ -21,13 +21,13 @@
     };
 
 var server = window.location.hostname;
-if(server == 'localhost')
+if(server == 'localhost' || server == 'carpool.dev' || server == '127.0.0.1')
 {
   var webUrl = "http://carpool.dev/";
 }
 else
 {
-  var webUrl = "http://carpool.dev/";
+  var webUrl = "http://cristiano.wwhitesoft.com/public/";
 }
 
 var apiUrl = webUrl + "api/";

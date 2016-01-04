@@ -33,6 +33,14 @@ Route::group(['prefix' => 'api'], function ()
 	Route::get('system_users', 'Auth\SystemUserController@listing');	
 	Route::post('system_users/image', 'Auth\SystemUserController@upload');
 
+	//system users
+	Route::post('users', 'Auth\UserController@save');
+	Route::get('users/{id}', 'Auth\UserController@get');
+	Route::put('users/{id}', 'Auth\UserController@update');
+	Route::delete('users/{id}', 'Auth\UserController@destroy');	
+	Route::get('users', 'Auth\SystemUserController@listing');	
+	Route::post('users/image', 'Auth\UserController@upload');
+	
 	// auth Routes
 	Route::post('auth/login', 'Auth\SystemUserController@login');
 	Route::post('auth/password', 'Auth\SystemUserController@updatePassword');
@@ -49,12 +57,14 @@ Route::group(['prefix' => 'api'], function ()
  	//Currency
  	Route::post('currency', 'Currency\CurrencyController@save');
  	Route::get('currency/{id}', 'Currency\CurrencyController@get');
+ 	Route::get('currency', 'Currency\CurrencyController@listing'); 	
  	Route::put('currency/{id}', 'Currency\CurrencyController@update');
  	Route::delete('currency/{id}', 'Currency\CurrencyController@destroy');
 
  	//Language
  	Route::post('language', 'Language\LanguageController@save');
  	Route::get('language/{id}', 'Language\LanguageController@get');
+ 	Route::get('language', 'Language\LanguageController@listing'); 	
  	Route::put('language/{id}', 'Language\LanguageController@update');
  	Route::delete('language/{id}', 'Language\LanguageController@destroy');
 	
@@ -72,10 +82,12 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
 	Route::get('profile', 'App\AdminController@showProfile');
 	Route::get('dashboard', 'App\AdminController@showDashboard');
 	Route::get('car/make', 'App\AdminController@showCarMake');	
+	Route::get('system-users', 'App\AdminController@showSystemUser');
 	Route::get('users', 'App\AdminController@showUser');
-
+	
 	Route::get('country', 'App\AdminController@showCountry');
-
+	Route::get('language', 'App\AdminController@showLanguage');
+	Route::get('currency', 'App\AdminController@showCurrency');
 
 });
 

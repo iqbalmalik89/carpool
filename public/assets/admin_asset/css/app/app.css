@@ -30966,3 +30966,17 @@ ul.timeline-list .media-body.fixed {
 .text-yellow-A700 {
   color: #ffd600;
 }
+
+
+
+
+
+#master_overlay {
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  position: absolute;
+  background-color: #fff;
+  opacity: 0.5;
+  display: none;
+}

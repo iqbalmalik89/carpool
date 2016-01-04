@@ -1,7 +1,7 @@
 @extends('admin.layouts.master')
 
-@section('title', 'Country')
-@section('jsmodule', 'country.js')
+@section('title', 'Language')
+@section('jsmodule', 'language.js')
 @section('content')
 	  <div class="modal fade" id="add_popup">
 	    <div class="modal-dialog">
@@ -9,7 +9,7 @@
 	        <div class="modal-content">
 	          <div class="modal-header">
 	            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-	            <h4 class="modal-title" id="popupTitle">Add Country</h4>
+	            <h4 class="modal-title" id="popupTitle">Add Language</h4>
 	          </div>
 	          <div class="modal-body">
 
@@ -25,33 +25,17 @@
 
 
 	                    <div class="form-group">
-	                      <label for="inputEmail3" class="col-sm-3 control-label">Country</label>
+	                      <label for="inputEmail3" class="col-sm-3 control-label">Language</label>
 	                      <div class="col-sm-9">
-	                        <input type="text" class="form-control" id="country" placeholder="Country">
+	                        <input type="text" class="form-control" id="language" placeholder="Language">
 	                      </div>
 	                    </div>
 	                    <div class="form-group">
-	                      <label for="inputEmail3" class="col-sm-3 control-label">Country Code</label>
+	                      <label for="inputEmail3" class="col-sm-3 control-label">Language Code</label>
 	                      <div class="col-sm-9">
-	                        <input type="text" class="form-control" id="country_code" placeholder="Country Code">
+	                        <input type="text" class="form-control" id="language_code" placeholder="Langauge Code">
 	                      </div>
 	                    </div>
-
-                      <div class="form-group">
-                        <label for="inputEmail3" class="col-sm-3 control-label">Status</label>
-                        <div class="col-sm-9">
-                            <div class="radio radio-info radio-inline">
-                              <input type="radio" id="statusactive" value="active" name="country_status" checked="">
-                              <label for="statusactive">Active</label>
-                            </div>
-                            <div class="radio radio-inline">
-                              <input type="radio" id="statusinactive" value="inactive" name="country_status">
-                              <label for="statusinactive">Inactive</label>
-                            </div>
-                        </div>
-                      </div>
-
-
 
 	                  </form>
 	                </div>
@@ -80,8 +64,8 @@
                 <div class="col-md-10 col-lg-10 col-md-offset-1 col-lg-offset-1">
 
 					<div>
-                      <div style="float:left;"><h1>Country</h1></div>
-                      <button id="addbutton" data-target="#add_popup" data-modal-options="slide-down" data-content-options="modal-sm h-center" style="float:right; margin-top:16px;" class="btn btn-inverse showmodal">Add Country</button>
+                      <div style="float:left;"><h1>Language</h1></div>
+                      <button id="addbutton" data-target="#add_popup" data-modal-options="slide-down" data-content-options="modal-sm h-center" style="float:right; margin-top:16px;" class="btn btn-inverse showmodal">Add Language</button>
 					</div>
 					
 					<div style="clear:both;"></div>
@@ -93,8 +77,8 @@
                         <thead>
                           <tr>
                             <th>Id</th>
-                            <th>Country Name</th>
-                            <th>Country Code</th>                            
+                            <th>Language</th>
+                            <th>Language Code</th>                            
                             <th>Created</th>
                             <th class="text-right">Action</th>
                           </tr>

@@ -15,6 +15,16 @@ $(document).ready( function () {
 
 });
 
+$.showLoading = function() 
+{
+  $('#master_overlay').show();
+}
+
+$.hideLoading = function() 
+{
+  $('#master_overlay').hide();
+}
+
 $.confirmDel = function(entityId, curObj, callback) 
 {
   $('#deleted_entity_name').html($(curObj).data('entityname'));

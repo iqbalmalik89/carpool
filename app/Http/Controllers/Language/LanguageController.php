@@ -67,7 +67,7 @@ class LanguageController extends Controller
         }
     }
 
-    public function save(LanguageRepository $request)
+    public function save(LanguageRequest $request)
     {
         $resp = $this->repo->save($request);
         if($resp)
@@ -80,7 +80,7 @@ class LanguageController extends Controller
         }
     }
 
-    public function update(LanguageRepository $request, $id)
+    public function update(LanguageRequest $request, $id)
     {
         $resp = $this->repo->update($id, $request);
         if($resp)
@@ -93,7 +93,7 @@ class LanguageController extends Controller
         }
     }
 
-    public function listing(LanguageRepository $request)
+    public function listing(LanguageRequest $request)
     {
         $page = $request->input('page');
         $limit = $request->input('limit');

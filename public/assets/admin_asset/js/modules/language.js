@@ -1,7 +1,7 @@
 $(function () {
 
 	$( "#save_btn" ).click(function() {
-		$.addUpdateCountry();
+		$.addUpdateLanguage();
 	});
 
 	$( "#addbutton" ).click(function() {
@@ -10,7 +10,7 @@ $(function () {
 	});
 
 
-	// List records
+	// List Records
 	$.getListing(0);
 
 	$('body').keypress(function (e) {
@@ -19,7 +19,7 @@ $(function () {
 	  {
 	  	if($('#add_popup').is(':visible'))
 	  	{
-			$.addUpdateCountry();
+			$.addUpdateLanguage();
 	  	}
 	  }
 	});
@@ -30,26 +30,25 @@ $.resetForm = function()
 {
 	var id = $.trim($('#id').val());
 	if(id != '' && id != '0')
-		$('#popupTitle').html('Update Country');
+		$('#popupTitle').html('Update Language');
 	else
-		$('#popupTitle').html('Add Country');		
+		$('#popupTitle').html('Add Language');		
 
 	//reset fields
-	$('#country, #country_code, #id').val('');
-	$('#statusactive').prop('checked', true);
+	$('#language, #language_code, #id').val('');
 	$('div').removeClass('has-error');
 }
 
 $.getListing = function(page)
 {
 	var requestData = {"page":page, limit:12};
-	var request = ajaxExec('country', requestData, 'get', '#response_msg', $.listing);
+	var request = ajaxExec('language', requestData, 'get', '#response_msg', $.listing);
 }
 
 $.showEditPopup = function(id)
 {
 	$.resetForm();
-	$('#popupTitle').html('Update Country');
+	$('#popupTitle').html('Update language');
 	$('#id').val(id);
     $('#add_popup').modal('show');
     $.getRec();
@@ -58,23 +57,21 @@ $.showEditPopup = function(id)
 $.getRec = function() {
 	var id = $('#id').val();
 	var requestData = {"id": id};
-	var request = ajaxExec('country/' + id, requestData, 'GET', '#response_msg');	
+	var request = ajaxExec('language/' + id, requestData, 'GET', '#response_msg');	
 
 	request.done(function(data) {
 		if(data.status == 'success')
 		{
-			$('#country').val(data.data.country_name);
-			$('#country_code').val(data.data.country_code);
-			$('#status' + data.data.status).prop('checked', true);
-
+			$('#language').val(data.data.language);
+			$('#language_code').val(data.data.code);
 		}
 	});
 }
 
-$.deleteCountry = function(id) 
+$.deleteLanguage = function(id) 
 {
 	var requestData  = {};
-    var request = ajaxExec('country/' + id, requestData, 'delete', '#response_msg');
+    var request = ajaxExec('language/' + id, requestData, 'delete', '#response_msg');
 	request.done(function(data) {
 
 		if(data.status == 'success' )
@@ -98,22 +95,12 @@ $.listing = function(data) {
 		{
 	        $.each( data.data.data, function( key, rec ) {
 
-	        	if(rec.status == 'active')
-	        	{
-					var statusClass = 'btn-success';
-	        	}
-	        	else
-	        	{
-	        		var statusClass = 'btn-inverse';
-	        	}
-
 	 			html += '<tr>\
 	                            <td class="text-left">'+ (key + 1) +'</td>\
-	                            <td class="text-left">'+ rec.country_name +'</td>\
-	                            <td class="text-left">'+ rec.country_code +'</td>\
+	                            <td class="text-left">'+ rec.language +'</td>\
+	                            <td class="text-left">'+ rec.code +'</td>\
 	                            <td class="text-left"> <span class="label label-primary">'+rec.created_at_formatted+'</span> </td>\
 	                            <td class="text-right">\
-	                              <a href="javascript:void(0);"><button class="btn '+statusClass+' btn-xs">'+ucfirst(rec.status)+'</button></a>\
 	                              <a href="javascript:void(0);" onclick="$.showEditPopup('+rec.id+');" class="btn btn-default btn-xs" data-target="#add_popup" data-modal-options="slide-down" data-content-options="modal-sm h-center" title="Edit"><i class="fa fa-pencil"></i></a>\
 	                              <a href="javascript:void(0);" onclick="$.confirmDel('+rec.id+', this, \'deleteCountry\');" data-entityname="' + rec.country_name+'" class="btn btn-danger btn-xs" title="Delete"><i class="fa fa-times"></i></a>\
 	                            </td>\
@@ -139,18 +126,17 @@ $.listing = function(data) {
 	}
 }
 
-$.addUpdateCountry = function()
+$.addUpdateLanguage = function()
 {
 	var check = true;
 	var method = 'POST';
-	var endPoint = 'country';
-	var country = $.trim($('#country').val());
-	var countryCode = $.trim($('#country_code').val());
-	var status = $('input[name=country_status]:checked').val();
+	var endPoint = 'language';
+	var language = $.trim($('#language').val());
+	var languageCode = $.trim($('#language_code').val());
 	var id = $.trim($('#id').val());
 
-	check = validateText('#country', country, check);
-	check = validateText('#country_code', countryCode, check);
+	check = validateText('#language', language, check);
+	check = validateText('#language_code', languageCode, check);
 
 	if(id != '')
 	{
@@ -160,7 +146,7 @@ $.addUpdateCountry = function()
 
 	if(check)
 	{
-		requestData = {"id": id, 'country_name': country, 'country_code': countryCode, 'currency': '', 'status': status};
+		requestData = {"id": id, 'language': language, 'code': languageCode};
 		var request = ajaxExec(endPoint, requestData, method, '#response_msg');
 		request.done(function(data) {
 			if(data.status == 'success')

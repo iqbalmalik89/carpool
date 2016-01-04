@@ -35,7 +35,7 @@ class CurrencyRequest extends FormRequest
 	        {
 				return [
 
-			            'currency' => 'unique:currency,currency,'.\Request::input('currency_id'),
+			            'currency' => 'unique:currency,currency,'.\Request::input('id'),
 			            'symbol' => 'required',            
 		        ];	     
 	        }

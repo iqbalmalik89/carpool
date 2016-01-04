@@ -15,11 +15,14 @@
                   <?php $currentRoute = \Route::getCurrentRoute()->getPath(); ?>
                     <ul class="sidebar-menu sm-bordered sm-active-item-bg">
                       <li class="<?php if($currentRoute == 'admin/dashboard') echo 'active'; ?>"><a href="{{\URL::to('admin/dashboard')}}"><i class="fa fa-bar-chart"></i> <span>Dashboard</span></a></li>
+                      <li class="<?php if($currentRoute == 'admin/system-users') echo 'active'; ?>"><a href="{{\URL::to('admin/system-users')}}"><i class="fa fa-male"></i> <span>System Users</span></a></li>
                       <li class="<?php if($currentRoute == 'admin/users') echo 'active'; ?>"><a href="{{\URL::to('admin/users')}}"><i class="fa fa-users"></i> <span>Users</span></a></li>
                       <li class="hasSubmenu">
-                        <a href="#nav-master"><i class="fa fa-car"></i> <span>Master</span></a>
+                        <a href="#nav-master"><i class="fa fa-gears"></i> <span>Master</span></a>
                         <ul id="nav-master">
-                          <li><a href="{{\URL::to('admin/country')}}"><i class="fa fa-cogs"></i> <span>Country</span></a></li>
+                          <li><a href="{{\URL::to('admin/country')}}"><i class="fa fa-globe"></i> <span>Country</span></a></li>
+                          <li><a href="{{\URL::to('admin/language')}}"><i class="fa fa-language"></i> <span>Language</span></a></li>
+                          <li><a href="{{\URL::to('admin/currency')}}"><i class="fa fa-usd"></i> <span>Currency</span></a></li>
                         </ul>
                       </li>
 

@@ -67,7 +67,7 @@ class CurrencyController extends Controller
         }
     }
 
-    public function save(CurrencyRepository $request)
+    public function save(CurrencyRequest $request)
     {
         
         $resp = $this->repo->save($request);
@@ -81,7 +81,7 @@ class CurrencyController extends Controller
         }
     }
 
-    public function update(CurrencyRepository $request, $id)
+    public function update(CurrencyRequest $request, $id)
     {
         $resp = $this->repo->update($id, $request);
         if($resp)
@@ -94,7 +94,7 @@ class CurrencyController extends Controller
         }
     }
 
-    public function listing(CurrencyRepository $request)
+    public function listing(CurrencyRequest $request)
     {
         $page = $request->input('page');
         $limit = $request->input('limit');

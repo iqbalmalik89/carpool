@@ -84,13 +84,9 @@ class CurrencyRepository
 
     public function save($request)
     {
-        //var_dump($request->input::all());
         $currencies = new Currency();
-        //$currencies->currency = $request->input('currency');
-        //$currencies->symbol = $request->input('symbol');
-        
-        $currencies->currency = 'dollar';
-        $currencies->symbol = '$';
+        $currencies->currency = $request->input('currency');
+        $currencies->symbol = $request->input('symbol');
 
         if($currencies->save())
         {
