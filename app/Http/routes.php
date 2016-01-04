@@ -68,6 +68,13 @@ Route::group(['prefix' => 'api'], function ()
  	Route::put('language/{id}', 'Language\LanguageController@update');
  	Route::delete('language/{id}', 'Language\LanguageController@destroy');
 	
+	//Testimonial
+ 	Route::post('testimonial', 'Testimonial\TestimonialController@save');
+ 	Route::get('testimonial/{id}', 'Testimonial\TestimonialController@get');
+ 	Route::get('testimonial', 'Testimonial\TestimonialController@listing'); 	
+ 	Route::put('testimonial/{id}', 'Testimonial\TestimonialController@update');
+ 	Route::delete('testimonial/{id}', 'Testimonial\TestimonialController@destroy');
+
 	// Car Make
 	Route::get('car/make', 'Car\MakeController@listing');
 });
