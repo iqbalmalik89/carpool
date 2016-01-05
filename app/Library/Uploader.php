@@ -6,14 +6,14 @@ class Uploader
 {
     public $imageExtensions = array('jpg', 'jpeg', 'gif', 'png', 'bmp');
     public $size = array('width' => '0', 'height' => '0' );
-
+    public $directory = '';
     public function uploadImage($file)
     {
     	$response = array('status' => 'error', 'code' => '', 'file_type' => 'image');
     	$fileExt = strtolower($file->getClientOriginalExtension());
     	$fileName = md5(time()).'.'.$fileExt;
-    	$destinationPath = env('STORAGE_PATH').'user_images'.DIRECTORY_SEPARATOR.$fileName;
-    	$webUrl = env('STORAGE_URL').'app/user_images/'.$fileName;
+    	$destinationPath = env('STORAGE_PATH').$this->directory.DIRECTORY_SEPARATOR.$fileName;
+    	$webUrl = env('STORAGE_URL').'app/'.$this->directory.'/'.$fileName;
 
     	if($this->checkExtension($fileExt, $this->imageExtensions))
     	{

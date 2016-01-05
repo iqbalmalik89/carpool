@@ -141,6 +141,7 @@ class SystemUserController extends Controller
     {
         $uploaderObj = new Uploader();
         $uploaderObj->size = array('width' =>100, 'height' => 100);
+        $uploaderObj->directory = 'user_images';        
         $resp = $uploaderObj->uploadImage($request->file('user_image_upload'));
         return response()->json($resp);
     }

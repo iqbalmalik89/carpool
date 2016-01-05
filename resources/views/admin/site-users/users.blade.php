@@ -9,7 +9,7 @@
 	        <div class="modal-content">
 	          <div class="modal-header">
 	            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-	            <h4 class="modal-title" id="popupTitle">Add System User</h4>
+	            <h4 class="modal-title" id="popupTitle">Add User</h4>
 	          </div>
 	          <div class="modal-body">
 
@@ -115,8 +115,8 @@
                 <div class="col-md-10 col-lg-10 col-md-offset-1 col-lg-offset-1">
 
 					<div>
-                      <div style="float:left;"><h1>System Users</h1></div>
-                      <button id="addbutton" data-target="#user_popup" data-modal-options="slide-down" data-content-options="modal-sm h-center" style="float:right; margin-top:16px;" class="btn btn-inverse showmodal">Add System User</button>
+                      <div style="float:left;"><h1>Users</h1></div>
+                      <button id="addbutton" data-target="#user_popup" data-modal-options="slide-down" data-content-options="modal-sm h-center" style="float:right; margin-top:16px;" class="btn btn-inverse showmodal">Add User</button>
 					</div>
 					
 					<div style="clear:both;"></div>

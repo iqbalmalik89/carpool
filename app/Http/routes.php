@@ -13,9 +13,10 @@
 
 
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/cache', function () {
+	\Cache::flush();
+});
+
 Route::get('/admin', 'App\AdminController@showLogin');
 
 Route::get('/', function () {
@@ -34,12 +35,12 @@ Route::group(['prefix' => 'api'], function ()
 	Route::post('system_users/image', 'Auth\SystemUserController@upload');
 
 	//system users
-	Route::post('users', 'Auth\UserController@save');
-	Route::get('users/{id}', 'Auth\UserController@get');
-	Route::put('users/{id}', 'Auth\UserController@update');
-	Route::delete('users/{id}', 'Auth\UserController@destroy');	
-	Route::get('users', 'Auth\SystemUserController@listing');	
-	Route::post('users/image', 'Auth\UserController@upload');
+	Route::post('users', 'Users\UserController@save');
+	Route::get('users/{id}', 'Users\UserController@get');
+	Route::put('users/{id}', 'Users\UserController@update');
+	Route::delete('users/{id}', 'Users\UserController@destroy');	
+	Route::get('users', 'Users\UserController@listing');	
+	Route::post('users/image', 'Users\UserController@upload');
 	
 	// auth Routes
 	Route::post('auth/login', 'Auth\SystemUserController@login');

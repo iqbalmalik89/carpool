@@ -1,7 +1,7 @@
 @extends('admin.layouts.master')
 
-@section('title', 'Users')
-@section('jsmodule', 'users.js')
+@section('title', 'System Users')
+@section('jsmodule', 'system-users.js')
 @section('content')
 	  <div class="modal fade" id="user_popup">
 	    <div class="modal-dialog">

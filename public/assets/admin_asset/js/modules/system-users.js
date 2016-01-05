@@ -1,8 +1,8 @@
 $(function () {
-    uploadFile('#user_image_upload', 'users/image', '#file_path', '#user_image', '#response_msg')
+    uploadFile('#user_image_upload', 'system_users/image', '#file_path', '#user_image', '#response_msg')
 
 	$( "#save_user_btn" ).click(function() {
-		$.addUpdateUser();
+		$.addUpdateSystemUser();
 	});
 
 	$( "#addbutton" ).click(function() {
@@ -20,7 +20,7 @@ $(function () {
 	  {
 	  	if($('#user_popup').is(':visible'))
 	  	{
-			$.addUpdateUser();
+			$.addUpdateSystemUser();
 	  	}
 	  }
 	});
@@ -31,9 +31,9 @@ $.resetUserForm = function()
 {
 	var userId = $.trim($('#id').val());
 	if(userId != '' && userId != '0')
-		$('#popupTitle').html('Update user');
+		$('#popupTitle').html('Update system user');
 	else
-		$('#popupTitle').html('Add user');		
+		$('#popupTitle').html('Add system user');		
 
 	//reset fields
 	$('#user_first_name, #user_last_name, #user_email, #user_password, #user_mobile, #file_path, #id').val('');
@@ -48,7 +48,7 @@ $.getUserListing = function(page)
 {
 	$.showLoading();
 	var requestData = {"page":page, limit:12};
-	var request = ajaxExec('users', requestData, 'get', '#response_msg', $.userlisting);
+	var request = ajaxExec('system_users', requestData, 'get', '#response_msg', $.userlisting);
 	request.done(function(data) {	
 		$.hideLoading();
 	});
@@ -57,7 +57,7 @@ $.getUserListing = function(page)
 $.showEditPopup = function(userId)
 {
 	$.resetUserForm();
-	$('#popupTitle').html('Update user');
+	$('#popupTitle').html('Update system user');
 	$('#id').val(userId);
     $('#user_popup').modal('show');
     $.getUser();
@@ -66,7 +66,7 @@ $.showEditPopup = function(userId)
 $.getUser = function() {
 	var userId = $('#id').val();
 	var requestData = {"user_id": userId};
-	var request = ajaxExec('users/' + userId, requestData, 'GET', '#response_msg');	
+	var request = ajaxExec('system_users/' + userId, requestData, 'GET', '#response_msg');	
 
 	request.done(function(data) {
 		if(data.status == 'success')
@@ -96,7 +96,7 @@ $.getUser = function() {
 $.deleteUser = function(userId) 
 {
 	var requestData  = {};
-    var request = ajaxExec('users/' + userId, requestData, 'delete', '#response_msg');
+    var request = ajaxExec('system_users/' + userId, requestData, 'delete', '#response_msg');
 	request.done(function(data) {
 		if(data.status == 'success' )
 		{
@@ -165,10 +165,7 @@ $.userlisting = function(data) {
 
 			$('.profile').initial({width:30, height: 30, fontSize:10});         
 		}
-		else
-		{
-	        $('#responsive-table-body').html('<tr><th style="text-align:center;" colspan="5">No records found</th></tr>');
-		}
+
 	}
 }
 
@@ -210,11 +207,11 @@ $.updatePassword = function()
 
 }
 
-$.addUpdateUser = function()
+$.addUpdateSystemUser = function()
 {
 	var check = true;
 	var method = 'POST';
-	var endPoint = 'users';
+	var endPoint = 'system_users';
 	var firstName = $.trim($('#user_first_name').val());
 	var lastName = $.trim($('#user_last_name').val());
 	var email = $.trim($('#user_email').val());

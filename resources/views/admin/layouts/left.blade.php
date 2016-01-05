@@ -27,6 +27,14 @@
                       </li>
 
 
+                      <li class="hasSubmenu">
+                        <a href="#nav-master"><i class="fa fa-gears"></i> <span>CMS</span></a>
+                        <ul id="nav-master">
+                          <li><a href="{{\URL::to('admin/country')}}"><i class="fa fa-globe"></i> <span>Country</span></a></li>
+                          <li><a href="{{\URL::to('admin/language')}}"><i class="fa fa-language"></i> <span>Language</span></a></li>
+                        </ul>
+                      </li>
+
 
 <!--                       <li><a href="email.html"><i class="fa fa-envelope"></i> <span>Email</span></a></li>
                       <li><a href="chat.html"><i class="fa fa-comments"></i> <span>Chat</span></a></li> -->

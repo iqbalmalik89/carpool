@@ -48,7 +48,7 @@ class UserController extends Controller
     {
         return Validator::make($data, [
             'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:system_users',
+            'email' => 'required|email|max:255|unique:site_users',
             'password' => 'required|confirmed|min:6',
         ]);
     }
@@ -68,7 +68,7 @@ class UserController extends Controller
         }
     }
 
-    public function save(SystemUserRequest $request)
+    public function save(UserRequest $request)
     {
         $resp = $this->repo->save($request);
         if($resp)
@@ -81,7 +81,7 @@ class UserController extends Controller
         }
     }
 
-    public function update(SystemUserRequest $request)
+    public function update(UserRequest $request)
     {
         $resp = $this->repo->update($request);
         if($resp)
@@ -94,7 +94,7 @@ class UserController extends Controller
         }
     }
 
-    public function listing(SystemUserRequest $request)
+    public function listing(UserRequest $request)
     {
         $page = $request->input('page');
         $limit = $request->input('limit');
@@ -106,7 +106,7 @@ class UserController extends Controller
         }
     }
 
-    public function login(SystemUserRequest $request)
+    public function login(UserRequest $request)
     {
         // Login user
         $response = $this->repo->login($request);
@@ -137,15 +137,16 @@ class UserController extends Controller
         }
     }
 
-    public function upload(SystemUserRequest $request)
+    public function upload(UserRequest $request)
     {
         $uploaderObj = new Uploader();
         $uploaderObj->size = array('width' =>100, 'height' => 100);
+        $uploaderObj->directory = 'site_user_images';
         $resp = $uploaderObj->uploadImage($request->file('user_image_upload'));
         return response()->json($resp);
     }
 
-    public function resetPassword(SystemUserRequest $request)
+    public function resetPassword(UserRequest $request)
     {
         $response = $this->repo->verifyCode($request->input('user_id'), $request->input('code'));
 
@@ -161,7 +162,7 @@ class UserController extends Controller
         }
     }
 
-    public function updatePassword(SystemUserRequest $request)
+    public function updatePassword(UserRequest $request)
     {
         $userId = \Session::get('user')['id'];
         $response = $this->repo->verifyPassword($userId, $request->input('old_password'));
@@ -177,7 +178,7 @@ class UserController extends Controller
         }
     }
 
-    public function resetPasswordEmail(SystemUserRequest $request)
+    public function resetPasswordEmail(UserRequest $request)
     {
         $response = $this->repo->resetPasswordEmail($request->input('email'));
         if(!empty($response))
