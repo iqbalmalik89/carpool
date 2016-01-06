@@ -76,6 +76,13 @@ Route::group(['prefix' => 'api'], function ()
  	Route::put('testimonial/{id}', 'Testimonial\TestimonialController@update');
  	Route::delete('testimonial/{id}', 'Testimonial\TestimonialController@destroy');
 
+ 	//Radius
+ 	Route::post('radius', 'Radius\RadiusController@save');
+ 	Route::get('radius/{id}', 'Radius\RadiusController@get');
+ 	Route::get('radius', 'Radius\RadiusController@listing'); 	
+ 	Route::put('radius/{id}', 'Radius\RadiusController@update');
+ 	Route::delete('radius/{id}', 'Radius\RadiusController@destroy');
+
 	// Car Make
 	Route::get('car/make', 'Car\MakeController@listing');
 });
