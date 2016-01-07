@@ -28,10 +28,10 @@
 
 
                       <li class="hasSubmenu">
-                        <a href="#nav-master"><i class="fa fa-gears"></i> <span>CMS</span></a>
-                        <ul id="nav-master">
-                          <li><a href="{{\URL::to('admin/country')}}"><i class="fa fa-globe"></i> <span>Country</span></a></li>
-                          <li><a href="{{\URL::to('admin/language')}}"><i class="fa fa-language"></i> <span>Language</span></a></li>
+                        <a href="#cms-nav"><i class="fa fa-file-text-o"></i> <span>CMS</span></a>
+                        <ul id="cms-nav">
+                          <li><a href="{{\URL::to('admin/cms')}}"><i class="fa fa-file-text"></i> <span>Pages</span></a></li>
+                          <li><a href="{{\URL::to('admin/testimonial')}}"><i class="fa fa-thumbs-up"></i> <span>Testimonial</span></a></li>
                         </ul>
                       </li>
 
