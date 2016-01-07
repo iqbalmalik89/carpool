@@ -28,7 +28,7 @@ class TestimonialRequest extends FormRequest
 	        	if($route == 'api/testimonial/image')
 	        	{
 					return [
-			            'testimonial_image_upload' => 'required|image',
+			            'user_image_upload' => 'required|image',
 			        ];	        		
 	        	}
 	        	else
@@ -45,7 +45,7 @@ class TestimonialRequest extends FormRequest
 	        case 'PUT':
 	        {
 				return [
-		            'name' => 'required|unique:testimonial'.\Request::input('testimonial_id'),
+		            'name' => 'unique:testimonial,name,'.\Request::input('id'),
 			        'description' => 'required',            
 			        'pic_path' => 'required',
 			        'status' => 'required',

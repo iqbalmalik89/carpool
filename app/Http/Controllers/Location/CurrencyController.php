@@ -1,18 +1,18 @@
 <?php
 
-namespace App\Http\Controllers\Radius;
+namespace App\Http\Controllers\Location;
 
-use App\Repositories\RadiusRepository;
-use App\Http\Requests\RadiusRequest;
+use App\Repositories\CurrencyRepository;
+use App\Http\Requests\CurrencyRequest;
 use App\Library\Uploader;
 
 use Validator;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-//use Illuminate\Foundation\Auth\ThrottlesLogins;
-//use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Illuminate\Foundation\Auth\ThrottlesLogins;
+use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
-class RadiusController extends Controller
+class CurrencyController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
@@ -32,9 +32,9 @@ class RadiusController extends Controller
      *
      * @return void
      */
-    public function __construct(RadiusRepository $radiusRepo)
+    public function __construct(CurrencyRepository $systemRepo)
     {
-        $this->repo = $radiusRepo;
+        $this->repo = $systemRepo;
         $this->middleware('guest', ['except' => 'getLogout']);
     }
 
@@ -47,9 +47,8 @@ class RadiusController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'distance_to' => 'required',
-            'distance_from' => 'required',
-            'radius' => 'required',
+            'currency' => 'required',
+            'symbol' => 'required',
         ]);
     }
 
@@ -60,41 +59,42 @@ class RadiusController extends Controller
         die();
         if($resp)
         {
-            return response()->json(['status' => 'success', 'message' => 'Radius created successfully', 'code' => 200], 200);            
+            return response()->json(['status' => 'success', 'message' => 'Currency created successfully', 'code' => 200], 200);            
         }
         else
         {
-            return response()->json(['status' => 'error', 'message' => 'Radius not registered successfully.', 'code' => 400], 400);
+            return response()->json(['status' => 'error', 'message' => 'Currency not registered successfully.', 'code' => 400], 400);
         }
     }
 
-    public function save(RadiusRequest $request)
+    public function save(CurrencyRequest $request)
     {
+        
         $resp = $this->repo->save($request);
         if($resp)
         {
-            return response()->json(['status' => 'success', 'message' => 'Radius created successfully', 'code' => 200], 200);            
+            return response()->json(['status' => 'success', 'message' => 'Currency created successfully', 'code' => 200], 200);            
         }
         else
         {
-            return response()->json(['status' => 'error', 'message' => 'Radius not registered successfully.', 'code' => 400], 400);
+            return response()->json(['status' => 'error', 'message' => 'Currency not registered successfully.', 'code' => 400], 400);
         }
     }
 
-    public function update(RadiusRequest $request, $id)
+    public function update(CurrencyRequest $request, $id)
     {
         $resp = $this->repo->update($id, $request);
         if($resp)
         {
-            return response()->json(['status' => 'success', 'message' => 'Radius updated successfully', 'code' => 200], 200);            
+            return response()->json(['status' => 'success', 'message' => 'Currency updated successfully', 'code' => 200], 200);            
         }
         else
         {
-            return response()->json(['status' => 'error', 'message' => 'Radius not updated successfully.', 'code' => 400], 400);
+            return response()->json(['status' => 'error', 'message' => 'Currency not updated successfully.', 'code' => 400], 400);
         }
     }
 
-    public function listing(RadiusRequest $request)
+    public function listing(CurrencyRequest $request)
     {
         $page = $request->input('page');
         $limit = $request->input('limit');
@@ -111,24 +111,24 @@ class RadiusController extends Controller
         $response = $this->repo->destroy($id);
         if(!empty($response))
         {
-            return response()->json(['status' => 'success', 'message' => 'Radius deleted successfully', 'code' => 200], 200);
+            return response()->json(['status' => 'success', 'message' => 'Currency deleted successfully', 'code' => 200], 200);
         }
         else
         {
-            return response()->json(['status' => 'error', 'message' => 'Radius not found', 'code' => 404], 404);
+            return response()->json(['status' => 'error', 'message' => 'Currency not found', 'code' => 404], 404);
         }
     }
 
     public function get($id)
     {
-        $radiusData = $this->repo->get($id, false);
-        if(!empty($radiusData))
+        $currencyData = $this->repo->get($id, false);
+        if(!empty($currencyData))
         {
-            return response()->json(['status' => 'success', 'message' => '', 'data' => $radiusData, 'code' => 200], 200);
+            return response()->json(['status' => 'success', 'message' => '', 'data' => $currencyData, 'code' => 200], 200);
         }
         else
         {
-            return response()->json(['status' => 'error', 'message' => 'Radius not found', 'code' => 404], 404);            
+            return response()->json(['status' => 'error', 'message' => 'Currency not found', 'code' => 404], 404);            
         }
     }
 

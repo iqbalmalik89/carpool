@@ -54,7 +54,6 @@ class TestimonialController extends Controller
         ]);
     }
 
-
     public function verifyCode($code)
     {
         $resp = $this->repo->verifyCode($code);
@@ -86,7 +85,8 @@ class TestimonialController extends Controller
     {
         $uploaderObj = new Uploader();
         $uploaderObj->size = array('width' =>100, 'height' => 100);
-        $resp = $uploaderObj->uploadImage($request->file('testimonial_image_upload'));
+        $uploaderObj->directory = 'testimonial_images';
+        $resp = $uploaderObj->uploadImage($request->file('user_image_upload'));
         return response()->json($resp);
     }
 

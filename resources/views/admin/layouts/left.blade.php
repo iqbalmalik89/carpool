@@ -23,6 +23,7 @@
                           <li><a href="{{\URL::to('admin/country')}}"><i class="fa fa-globe"></i> <span>Country</span></a></li>
                           <li><a href="{{\URL::to('admin/language')}}"><i class="fa fa-language"></i> <span>Language</span></a></li>
                           <li><a href="{{\URL::to('admin/currency')}}"><i class="fa fa-usd"></i> <span>Currency</span></a></li>
+                          <li><a href="{{\URL::to('admin/radius')}}"><i class="fa fa-usd"></i> <span>Radius</span></a></li>
                         </ul>
                       </li>
 

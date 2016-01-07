@@ -1,18 +1,18 @@
 <?php
 
-namespace App\Http\Controllers\Language;
+namespace App\Http\Controllers\Location;
 
-use App\Repositories\LanguageRepository;
-use App\Http\Requests\LanguageRequest;
+use App\Repositories\RadiusRepository;
+use App\Http\Requests\RadiusRequest;
 use App\Library\Uploader;
 
 use Validator;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\ThrottlesLogins;
-use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+//use Illuminate\Foundation\Auth\ThrottlesLogins;
+//use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
-class LanguageController extends Controller
+class RadiusController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
@@ -32,9 +32,9 @@ class LanguageController extends Controller
      *
      * @return void
      */
-    public function __construct(LanguageRepository $systemRepo)
+    public function __construct(RadiusRepository $radiusRepo)
     {
-        $this->repo = $systemRepo;
+        $this->repo = $radiusRepo;
         $this->middleware('guest', ['except' => 'getLogout']);
     }
 
@@ -47,8 +47,9 @@ class LanguageController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'language' => 'required',
-            'code' => 'required',
+            'distance_to' => 'required',
+            'distance_from' => 'required',
+            'radius' => 'required',
         ]);
     }
 
@@ -59,41 +60,41 @@ class LanguageController extends Controller
         die();
         if($resp)
         {
-            return response()->json(['status' => 'success', 'message' => 'Language created successfully', 'code' => 200], 200);            
+            return response()->json(['status' => 'success', 'message' => 'Radius created successfully', 'code' => 200], 200);            
         }
         else
         {
-            return response()->json(['status' => 'error', 'message' => 'Language not registered successfully.', 'code' => 400], 400);
+            return response()->json(['status' => 'error', 'message' => 'Radius not registered successfully.', 'code' => 400], 400);
         }
     }
 
-    public function save(LanguageRequest $request)
+    public function save(RadiusRequest $request)
     {
         $resp = $this->repo->save($request);
         if($resp)
         {
-            return response()->json(['status' => 'success', 'message' => 'Language created successfully', 'code' => 200], 200);            
+            return response()->json(['status' => 'success', 'message' => 'Radius created successfully', 'code' => 200], 200);            
         }
         else
         {
-            return response()->json(['status' => 'error', 'message' => 'Language not registered successfully.', 'code' => 400], 400);
+            return response()->json(['status' => 'error', 'message' => 'Radius not registered successfully.', 'code' => 400], 400);
         }
     }
 
-    public function update(LanguageRequest $request, $id)
+    public function update(RadiusRequest $request, $id)
     {
         $resp = $this->repo->update($id, $request);
         if($resp)
         {
-            return response()->json(['status' => 'success', 'message' => 'Language updated successfully', 'code' => 200], 200);            
+            return response()->json(['status' => 'success', 'message' => 'Radius updated successfully', 'code' => 200], 200);            
         }
         else
         {
-            return response()->json(['status' => 'error', 'message' => 'Language not updated successfully.', 'code' => 400], 400);
+            return response()->json(['status' => 'error', 'message' => 'Radius not updated successfully.', 'code' => 400], 400);
         }
     }
 
-    public function listing(LanguageRequest $request)
+    public function listing(RadiusRequest $request)
     {
         $page = $request->input('page');
         $limit = $request->input('limit');
@@ -110,24 +111,24 @@ class LanguageController extends Controller
         $response = $this->repo->destroy($id);
         if(!empty($response))
         {
-            return response()->json(['status' => 'success', 'message' => 'Language deleted successfully', 'code' => 200], 200);
+            return response()->json(['status' => 'success', 'message' => 'Radius deleted successfully', 'code' => 200], 200);
         }
         else
         {
-            return response()->json(['status' => 'error', 'message' => 'Language not found', 'code' => 404], 404);
+            return response()->json(['status' => 'error', 'message' => 'Radius not found', 'code' => 404], 404);
         }
     }
 
     public function get($id)
     {
-        $languageData = $this->repo->get($id, false);
-        if(!empty($languageData))
+        $radiusData = $this->repo->get($id, false);
+        if(!empty($radiusData))
         {
-            return response()->json(['status' => 'success', 'message' => '', 'data' => $languageData, 'code' => 200], 200);
+            return response()->json(['status' => 'success', 'message' => '', 'data' => $radiusData, 'code' => 200], 200);
         }
         else
         {
-            return response()->json(['status' => 'error', 'message' => 'Language not found', 'code' => 404], 404);            
+            return response()->json(['status' => 'error', 'message' => 'Radius not found', 'code' => 404], 404);            
         }
     }
 

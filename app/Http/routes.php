@@ -56,18 +56,18 @@ Route::group(['prefix' => 'api'], function ()
  	Route::delete('country/{id}', 'Location\CountryController@destroy');
 
  	//Currency
- 	Route::post('currency', 'Currency\CurrencyController@save');
- 	Route::get('currency/{id}', 'Currency\CurrencyController@get');
- 	Route::get('currency', 'Currency\CurrencyController@listing'); 	
- 	Route::put('currency/{id}', 'Currency\CurrencyController@update');
- 	Route::delete('currency/{id}', 'Currency\CurrencyController@destroy');
+ 	Route::post('currency', 'Location\CurrencyController@save');
+ 	Route::get('currency/{id}', 'Location\CurrencyController@get');
+ 	Route::get('currency', 'Location\CurrencyController@listing'); 	
+ 	Route::put('currency/{id}', 'Location\CurrencyController@update');
+ 	Route::delete('currency/{id}', 'Location\CurrencyController@destroy');
 
  	//Language
- 	Route::post('language', 'Language\LanguageController@save');
- 	Route::get('language/{id}', 'Language\LanguageController@get');
- 	Route::get('language', 'Language\LanguageController@listing'); 	
- 	Route::put('language/{id}', 'Language\LanguageController@update');
- 	Route::delete('language/{id}', 'Language\LanguageController@destroy');
+ 	Route::post('language', 'Location\LanguageController@save');
+ 	Route::get('language/{id}', 'Location\LanguageController@get');
+ 	Route::get('language', 'Location\LanguageController@listing'); 	
+ 	Route::put('language/{id}', 'Location\LanguageController@update');
+ 	Route::delete('language/{id}', 'Location\LanguageController@destroy');
 	
 	//Testimonial
  	Route::post('testimonial', 'Testimonial\TestimonialController@save');
@@ -75,13 +75,14 @@ Route::group(['prefix' => 'api'], function ()
  	Route::get('testimonial', 'Testimonial\TestimonialController@listing'); 	
  	Route::put('testimonial/{id}', 'Testimonial\TestimonialController@update');
  	Route::delete('testimonial/{id}', 'Testimonial\TestimonialController@destroy');
-
+	Route::post('testimonial/image', 'Testimonial\TestimonialController@upload');
+	
  	//Radius
- 	Route::post('radius', 'Radius\RadiusController@save');
- 	Route::get('radius/{id}', 'Radius\RadiusController@get');
- 	Route::get('radius', 'Radius\RadiusController@listing'); 	
- 	Route::put('radius/{id}', 'Radius\RadiusController@update');
- 	Route::delete('radius/{id}', 'Radius\RadiusController@destroy');
+ 	Route::post('radius', 'Location\RadiusController@save');
+ 	Route::get('radius/{id}', 'Location\RadiusController@get');
+ 	Route::get('radius', 'Location\RadiusController@listing'); 	
+ 	Route::put('radius/{id}', 'Location\RadiusController@update');
+ 	Route::delete('radius/{id}', 'Location\RadiusController@destroy');
 
 	// Car Make
 	Route::get('car/make', 'Car\MakeController@listing');
@@ -99,7 +100,9 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
 	Route::get('car/make', 'App\AdminController@showCarMake');	
 	Route::get('system-users', 'App\AdminController@showSystemUser');
 	Route::get('users', 'App\AdminController@showUser');
-	
+	Route::get('testimonial', 'App\AdminController@showTestimonial');	
+	Route::get('radius', 'App\AdminController@showRadius');	
+
 	Route::get('country', 'App\AdminController@showCountry');
 	Route::get('language', 'App\AdminController@showLanguage');
 	Route::get('currency', 'App\AdminController@showCurrency');

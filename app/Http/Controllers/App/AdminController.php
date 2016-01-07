@@ -74,6 +74,13 @@ class AdminController extends Controller
     return view('admin/location/currency');
   }    
   
+  public function showTestimonial()
+  {
+    return view('admin/testimonial/testimonial');    
+  }
   
-  
+  public function showradius()
+  {
+    return view('admin/location/radius');
+  }  
 }
