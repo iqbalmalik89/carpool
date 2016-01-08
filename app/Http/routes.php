@@ -84,6 +84,20 @@ Route::group(['prefix' => 'api'], function ()
  	Route::put('radius/{id}', 'Location\RadiusController@update');
  	Route::delete('radius/{id}', 'Location\RadiusController@destroy');
 
+	//Vehicle Category
+	Route::post('vehicle_category', 'Vehicle\VehicleCategoryController@save');
+ 	Route::get('vehicle_category/{id}', 'Vehicle\VehicleCategoryController@get');
+ 	Route::get('vehicle_category', 'Vehicle\VehicleCategoryController@listing'); 	
+ 	Route::put('vehicle_category/{id}', 'Vehicle\VehicleCategoryController@update');
+ 	Route::delete('vehicle_category/{id}', 'Vehicle\VehicleCategoryController@destroy');
+
+ 	//Subscriber
+ 	Route::post('subscriber', 'Email\SubscriberController@save');
+ 	Route::get('subscriber/{id}', 'Email\SubscriberController@get');
+ 	Route::get('subscriber', 'Email\SubscriberController@listing'); 	
+ 	Route::put('subscriber/{id}', 'Email\SubscriberController@update');
+ 	Route::delete('subscriber/{id}', 'Email\SubscriberController@destroy');
+
 	// Car Make
 	Route::get('car/make', 'Car\MakeController@listing');
 });
