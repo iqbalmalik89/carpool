@@ -25,15 +25,15 @@
 
 
 	                    <div class="form-group">
-	                      <label for="inputEmail3" class="col-sm-3 control-label">Radius From</label>
+	                      <label for="inputEmail3" class="col-sm-3 control-label">Distance From</label>
 	                      <div class="col-sm-9">
-	                        <input type="text" class="form-control" id="radius_from" name="radius_from" placeholder="Radius from">
+	                        <input type="text" class="form-control" id="distance_from" name="distance_from" placeholder="Distance from">
 	                      </div>
 	                    </div>
 	                    <div class="form-group">
-	                      <label for="inputEmail3" class="col-sm-3 control-label">Radius To</label>
+	                      <label for="inputEmail3" class="col-sm-3 control-label">Distance To</label>
 	                      <div class="col-sm-9">
-	                        <input type="text" class="form-control" id="radius_to"  id="radius_to" placeholder="Radius To">
+	                        <input type="text" class="form-control" id="distance_to"  id="distance_to" placeholder="Distance To">
 	                      </div>
 	                    </div>
 
@@ -74,8 +74,8 @@
                 <div class="col-md-10 col-lg-10 col-md-offset-1 col-lg-offset-1">
 
 					<div>
-                      <div style="float:left;"><h1>Country</h1></div>
-                      <button id="addbutton" data-target="#add_popup" data-modal-options="slide-down" data-content-options="modal-sm h-center" style="float:right; margin-top:16px;" class="btn btn-inverse showmodal">Add Country</button>
+                      <div style="float:left;"><h1>Radius</h1></div>
+                      <button id="addbutton" data-target="#add_popup" data-modal-options="slide-down" data-content-options="modal-sm h-center" style="float:right; margin-top:16px;" class="btn btn-inverse showmodal">Add Radius</button>
 					</div>
 					
 					<div style="clear:both;"></div>
@@ -87,8 +87,9 @@
                         <thead>
                           <tr>
                             <th>Id</th>
-                            <th>Country Name</th>
-                            <th>Country Code</th>                            
+                            <th>Distance From</th>
+                            <th>Distance To</th>
+                            <th>Distance</th>                            
                             <th>Created</th>
                             <th class="text-right">Action</th>
                           </tr>

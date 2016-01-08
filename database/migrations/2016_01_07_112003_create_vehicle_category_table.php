@@ -15,7 +15,7 @@ class CreateVehicleCategoryTable extends Migration
         Schema::create('vehicle_category', function (Blueprint $table) {
             $table->increments('id');
             $table->string('category', 200);
-            $table->enum('is_active', ['active', 'inactive'])->default('active');
+            $table->enum('status', ['active', 'inactive'])->default('active');
             $table->nullableTimestamps();
         });
     }
