@@ -98,6 +98,13 @@ Route::group(['prefix' => 'api'], function ()
  	Route::put('subscriber/{id}', 'Email\SubscriberController@update');
  	Route::delete('subscriber/{id}', 'Email\SubscriberController@destroy');
 
+ 	//Email
+ 	Route::post('email', 'Email\EmailController@save');
+ 	Route::get('email/{id}', 'Email\EmailController@get');
+ 	Route::get('email', 'Email\EmailController@listing'); 	
+ 	Route::put('email/{id}', 'Email\EmailController@update');
+ 	Route::delete('email/{id}', 'Email\EmailController@destroy');
+
 	// Car Make
 	Route::get('car/make', 'Car\MakeController@listing');
 });
