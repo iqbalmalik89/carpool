@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Response;
 
-class TestimonialRequest extends FormRequest
+class VehicleCategoryRequest extends FormRequest
 {
 
     public function rules()
@@ -25,31 +25,20 @@ class TestimonialRequest extends FormRequest
 	        }
 	        case 'POST':
 	        {
-	        	if($route == 'api/testimonial/image')
-	        	{
-					return [
-			            'user_image_upload' => 'required|image',
-			        ];	        		
-	        	}
-	        	else
-	        	{
+	    
 			        return [
-			            'name' => 'required|unique:testimonial',
-			            'description' => 'required',            
-			            'pic_path' => 'required',
-			            'status' => 'required',
-			           
-			        ];
-			    }	        		
+			            'category' => 'required|unique:vehicle_category',
+			            'status' => 'required',            
+			            
+			        ];	        		
+	       
 	        }
 	        case 'PUT':
 	        {
 				return [
-		            'name' => 'unique:testimonial,name,'.\Request::input('testimonial_id'),
-			        'description' => 'required',            
-			        'pic_path' => 'required',
-			        'status' => 'required',
-			       
+
+			            'category' => 'unique:vehicle_category,category,'.\Request::input('vehicle_category_id'),
+			            'status' => 'required',            
 		        ];	     
 	        }
 	        case 'PATCH':
