@@ -116,7 +116,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
 	Route::get('users', 'App\AdminController@showUser');
 	Route::get('testimonial', 'App\AdminController@showTestimonial');	
 	Route::get('radius', 'App\AdminController@showRadius');	
-
+	Route::get('subscriber', 'App\AdminController@showSubscriber');
 	Route::get('country', 'App\AdminController@showCountry');
 	Route::get('language', 'App\AdminController@showLanguage');
 	Route::get('currency', 'App\AdminController@showCurrency');

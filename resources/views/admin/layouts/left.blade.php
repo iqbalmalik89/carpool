@@ -33,6 +33,7 @@
                         <ul id="cms-nav">
                           <li><a href="{{\URL::to('admin/cms')}}"><i class="fa fa-file-text"></i> <span>Pages</span></a></li>
                           <li><a href="{{\URL::to('admin/testimonial')}}"><i class="fa fa-thumbs-up"></i> <span>Testimonial</span></a></li>
+                          <li><a href="{{\URL::to('admin/subscriber')}}"><i class="fa fa-thumbs-up"></i> <span>Subscribers</span></a></li>
                         </ul>
                       </li>
 

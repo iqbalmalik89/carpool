@@ -37,7 +37,10 @@ class AdminController extends Controller
     }
   }
 
-
+  public function showSubscriber()
+  {
+    return view('admin/site-users/users');    
+  }
 
   public function showUser()
   {

@@ -12,7 +12,7 @@ class Uploader
     	$response = array('status' => 'error', 'code' => '', 'file_type' => 'image');
     	$fileExt = strtolower($file->getClientOriginalExtension());
     	$fileName = md5(time()).'.'.$fileExt;
-    	$destinationPath = env('STORAGE_PATH').$this->directory.DIRECTORY_SEPARATOR.$fileName;
+    	$destinationPath = env('STORAGE_PATH').DIRECTORY_SEPARATOR.$this->directory.DIRECTORY_SEPARATOR.$fileName;
     	$webUrl = env('STORAGE_URL').'app/'.$this->directory.'/'.$fileName;
 
     	if($this->checkExtension($fileExt, $this->imageExtensions))
