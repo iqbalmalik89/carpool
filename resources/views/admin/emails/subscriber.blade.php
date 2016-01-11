@@ -1,7 +1,7 @@
 @extends('admin.layouts.master')
 
-@section('title', 'Radius')
-@section('jsmodule', 'radius.js')
+@section('title', 'Subscribers')
+@section('jsmodule', 'subscriber.js')
 @section('content')
 	  <div class="modal fade" id="add_popup">
 	    <div class="modal-dialog">
@@ -74,8 +74,8 @@
                 <div class="col-md-10 col-lg-10 col-md-offset-1 col-lg-offset-1">
 
 					<div>
-                      <div style="float:left;"><h1>Radius</h1></div>
-                      <button id="addbutton" data-target="#add_popup" data-modal-options="slide-down" data-content-options="modal-sm h-center" style="float:right; margin-top:16px;" class="btn btn-inverse showmodal">Add Radius</button>
+                      <div style="float:left;"><h1>Subscribers</h1></div>
+<!--                       <button id="addbutton" data-target="#add_popup" data-modal-options="slide-down" data-content-options="modal-sm h-center" style="float:right; margin-top:16px;" class="btn btn-inverse showmodal">Add Radius</button> -->
 					</div>
 					
 					<div style="clear:both;"></div>
@@ -87,9 +87,8 @@
                         <thead>
                           <tr>
                             <th>Id</th>
-                            <th>Distance From</th>
-                            <th>Distance To</th>
-                            <th>Radius</th>                            
+                            <th>Email</th>
+                            <th>Ip</th>
                             <th>Created</th>
                             <th class="text-right">Action</th>
                           </tr>

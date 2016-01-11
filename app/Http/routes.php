@@ -119,6 +119,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
 	Route::get('profile', 'App\AdminController@showProfile');
 	Route::get('dashboard', 'App\AdminController@showDashboard');
 	Route::get('car/make', 'App\AdminController@showCarMake');	
+	Route::get('vehicle-brands', 'App\AdminController@showVehicleCat');	
 	Route::get('system-users', 'App\AdminController@showSystemUser');
 	Route::get('users', 'App\AdminController@showUser');
 	Route::get('testimonial', 'App\AdminController@showTestimonial');	

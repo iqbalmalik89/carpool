@@ -1,5 +1,5 @@
-var moduleName = 'radius';
-var endPoint = 'radius';
+var moduleName = 'Vehicle Brand';
+var endPoint = 'vehicle_category';
 
 $(function () {
 
@@ -38,7 +38,7 @@ $.resetForm = function()
 		$('#popupTitle').html('Add ' + ucfirst(moduleName));		
 
 	//reset fields
-	$('#distance_from, #distance_to, #radius, #id').val('');
+	$('#category, #id').val('');
 	$('#statusactive').prop('checked', true);
 	$('div').removeClass('has-error');
 }
@@ -66,9 +66,7 @@ $.getRec = function() {
 	request.done(function(data) {
 		if(data.status == 'success')
 		{
-			$('#distance_from').val(data.data.distance_from);
-			$('#distance_to').val(data.data.distance_to);
-			$('#radius').val(data.data.radius);
+			$('#category').val(data.data.category);
 			$('#status' + data.data.status).prop('checked', true);
 
 		}
@@ -96,6 +94,7 @@ $.deleteEntity = function(id)
 
 $.listing = function(data) {
 	var html = '';
+
 	if(data.status == 'success')
 	{
 		if(data.data.data.length > 0)
@@ -105,13 +104,11 @@ $.listing = function(data) {
 
 	 			html += '<tr>\
 	                            <td class="text-left">'+ (key + 1) +'</td>\
-	                            <td class="text-left">'+ rec.distance_from +'</td>\
-	                            <td class="text-left">'+ rec.distance_to +'</td>\
-	                            <td class="text-left">'+ rec.radius +'</td>\
+	                            <td class="text-left">'+ rec.category +'</td>\
 	                            <td class="text-left"> <span class="label label-primary">'+rec.created_at_formatted+'</span> </td>\
 	                            <td class="text-right">\
 	                              <a href="javascript:void(0);" onclick="$.showEditPopup('+rec.id+');" class="btn btn-default btn-xs" data-target="#add_popup" data-modal-options="slide-down" data-content-options="modal-sm h-center" title="Edit"><i class="fa fa-pencil"></i></a>\
-	                              <a href="javascript:void(0);" onclick="$.confirmDel('+rec.id+', this, \'deleteEntity\');" data-entityname="' + rec.radius+'" class="btn btn-danger btn-xs" title="Delete"><i class="fa fa-times"></i></a>\
+	                              <a href="javascript:void(0);" onclick="$.confirmDel('+rec.id+', this, \'deleteEntity\');" data-entityname="' + rec.category+'" class="btn btn-danger btn-xs" title="Delete"><i class="fa fa-times"></i></a>\
 	                            </td>\
 	                          </tr>';
 	        });
@@ -139,28 +136,21 @@ $.addUpdateEntity = function()
 {
 	var check = true;
 	var method = 'POST';
-	var distanceFrom = $.trim($('#distance_from').val());
-	var distanceTo = $.trim($('#distance_to').val());
-	var radius = $.trim($('#radius').val());	
+	var category = $.trim($('#category').val());	
 	var status = $('input[name=status]:checked').val();
 	var id = $.trim($('#id').val());
 
-	check = validateText('#distance_from', distanceFrom, check);
-	check = validateText('#distance_to', distanceTo, check);
-	check = validateText('#radius', radius, check);
-
+	check = validateText('#category', category, check);
 	var newEndPoint = endPoint;
-
 	if(id != '')
 	{
 		method = 'PUT';
-		endPoint += '/' + id;
-		newEndPoint = endPoint + '/' + id;		
+		newEndPoint = endPoint + '/' + id;
 	}
 
 	if(check)
 	{
-		requestData = {"id": id, 'distance_from': distanceFrom, 'distance_to': distanceTo, 'radius': radius, 'status': status};
+		requestData = {"id": id, 'category': category, 'status': status};
 		var request = ajaxExec(newEndPoint, requestData, method, '#response_msg');
 		request.done(function(data) {
 			if(data.status == 'success')

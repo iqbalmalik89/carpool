@@ -37,7 +37,7 @@ class VehicleCategoryRequest extends FormRequest
 	        {
 				return [
 
-			            'category' => 'unique:vehicle_category,category,'.\Request::input('vehicle_category_id'),
+			            'category' => 'unique:vehicle_category,category,'.\Request::input('id'),
 			            'status' => 'required',            
 		        ];	     
 	        }

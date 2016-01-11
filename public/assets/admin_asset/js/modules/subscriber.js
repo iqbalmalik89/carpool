@@ -1,5 +1,5 @@
-var moduleName = 'radius';
-var endPoint = 'radius';
+var moduleName = 'subscriber';
+var endPoint = 'subscriber';
 
 $(function () {
 
@@ -105,17 +105,15 @@ $.listing = function(data) {
 
 	 			html += '<tr>\
 	                            <td class="text-left">'+ (key + 1) +'</td>\
-	                            <td class="text-left">'+ rec.distance_from +'</td>\
-	                            <td class="text-left">'+ rec.distance_to +'</td>\
-	                            <td class="text-left">'+ rec.radius +'</td>\
+	                            <td class="text-left">'+ rec.email +'</td>\
+	                            <td class="text-left">'+ rec.ip +'</td>\
 	                            <td class="text-left"> <span class="label label-primary">'+rec.created_at_formatted+'</span> </td>\
 	                            <td class="text-right">\
-	                              <a href="javascript:void(0);" onclick="$.showEditPopup('+rec.id+');" class="btn btn-default btn-xs" data-target="#add_popup" data-modal-options="slide-down" data-content-options="modal-sm h-center" title="Edit"><i class="fa fa-pencil"></i></a>\
-	                              <a href="javascript:void(0);" onclick="$.confirmDel('+rec.id+', this, \'deleteEntity\');" data-entityname="' + rec.radius+'" class="btn btn-danger btn-xs" title="Delete"><i class="fa fa-times"></i></a>\
+	                              <a href="javascript:void(0);" onclick="$.confirmDel('+rec.id+', this, \'deleteEntity\');" data-entityname="' + rec.email+'" class="btn btn-danger btn-xs" title="Delete"><i class="fa fa-times"></i></a>\
 	                            </td>\
 	                          </tr>';
 	        });
-
+	                              // <a href="javascript:void(0);" onclick="$.showEditPopup('+rec.id+');" class="btn btn-default btn-xs" data-target="#add_popup" data-modal-options="slide-down" data-content-options="modal-sm h-center" title="Edit"><i class="fa fa-pencil"></i></a>\
 	        $('#responsive-table-body').html(html);
 			$('#pagination').twbsPagination({
 			        totalPages: data.data.paginator.total_pages,
@@ -149,19 +147,16 @@ $.addUpdateEntity = function()
 	check = validateText('#distance_to', distanceTo, check);
 	check = validateText('#radius', radius, check);
 
-	var newEndPoint = endPoint;
-
 	if(id != '')
 	{
 		method = 'PUT';
 		endPoint += '/' + id;
-		newEndPoint = endPoint + '/' + id;		
 	}
 
 	if(check)
 	{
 		requestData = {"id": id, 'distance_from': distanceFrom, 'distance_to': distanceTo, 'radius': radius, 'status': status};
-		var request = ajaxExec(newEndPoint, requestData, method, '#response_msg');
+		var request = ajaxExec(endPoint, requestData, method, '#response_msg');
 		request.done(function(data) {
 			if(data.status == 'success')
 			{

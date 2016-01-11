@@ -1,7 +1,7 @@
 @extends('admin.layouts.master')
 
-@section('title', 'Radius')
-@section('jsmodule', 'radius.js')
+@section('title', 'Vehicle Brands')
+@section('jsmodule', 'vehicle_cat.js')
 @section('content')
 	  <div class="modal fade" id="add_popup">
 	    <div class="modal-dialog">
@@ -9,7 +9,7 @@
 	        <div class="modal-content">
 	          <div class="modal-header">
 	            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-	            <h4 class="modal-title" id="popupTitle">Add Radius</h4>
+	            <h4 class="modal-title" id="popupTitle">Add Vehicle Brand</h4>
 	          </div>
 	          <div class="modal-body">
 
@@ -25,23 +25,24 @@
 
 
 	                    <div class="form-group">
-	                      <label for="inputEmail3" class="col-sm-3 control-label">Distance From</label>
+	                      <label for="inputEmail3" class="col-sm-3 control-label">Brand Name</label>
 	                      <div class="col-sm-9">
-	                        <input type="text" class="form-control" id="distance_from" name="distance_from" placeholder="Distance from">
-	                      </div>
-	                    </div>
-	                    <div class="form-group">
-	                      <label for="inputEmail3" class="col-sm-3 control-label">Distance To</label>
-	                      <div class="col-sm-9">
-	                        <input type="text" class="form-control" id="distance_to"  id="distance_to" placeholder="Distance To">
+	                        <input type="text" class="form-control" id="category" name="category" placeholder="Brand Name">
 	                      </div>
 	                    </div>
 
 
                       <div class="form-group">
-                        <label for="inputEmail3" class="col-sm-3 control-label">Radius</label>
+                        <label for="inputEmail3" class="col-sm-3 control-label">Status</label>
                         <div class="col-sm-9">
-                          <input type="text" class="form-control" id="radius" name="radius" placeholder="Radius">
+                            <div class="radio radio-info radio-inline">
+                              <input type="radio" id="statusactive" value="active" name="status" checked="">
+                              <label for="statusactive">Active</label>
+                            </div>
+                            <div class="radio radio-inline">
+                              <input type="radio" id="statusinactive" value="inactive" name="status">
+                              <label for="statusinactive">Inactive</label>
+                            </div>
                         </div>
                       </div>
 
@@ -74,8 +75,8 @@
                 <div class="col-md-10 col-lg-10 col-md-offset-1 col-lg-offset-1">
 
 					<div>
-                      <div style="float:left;"><h1>Radius</h1></div>
-                      <button id="addbutton" data-target="#add_popup" data-modal-options="slide-down" data-content-options="modal-sm h-center" style="float:right; margin-top:16px;" class="btn btn-inverse showmodal">Add Radius</button>
+                      <div style="float:left;"><h1>Vehicle Brands</h1></div>
+                      <button id="addbutton" data-target="#add_popup" data-modal-options="slide-down" data-content-options="modal-sm h-center" style="float:right; margin-top:16px;" class="btn btn-inverse showmodal">Add Vehicle Brand</button>
 					</div>
 					
 					<div style="clear:both;"></div>
@@ -87,9 +88,7 @@
                         <thead>
                           <tr>
                             <th>Id</th>
-                            <th>Distance From</th>
-                            <th>Distance To</th>
-                            <th>Radius</th>                            
+                            <th>Vehicle Brand</th>
                             <th>Created</th>
                             <th class="text-right">Action</th>
                           </tr>
