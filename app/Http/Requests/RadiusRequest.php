@@ -36,7 +36,7 @@ class RadiusRequest extends FormRequest
 	        case 'PUT':
 	        {
 				return [
-		            'distance_from' => 'required'.\Request::input('radius_id'),
+		            'distance_from' => 'required'.\Request::input('id'),
 			        'distance_from' => 'required',            
 			        'radius' => 'required',
 			       

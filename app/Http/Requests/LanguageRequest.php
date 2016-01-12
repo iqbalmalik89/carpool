@@ -65,7 +65,7 @@ class LanguageRequest extends FormRequest
 	        {
 				return [
 
-			            'language' => 'unique:language,language,'.\Request::input('language_id'),
+			            'language' => 'unique:language,language,'.\Request::input('id'),
 			            'code' => 'required',            
 		        ];	     
 	        }

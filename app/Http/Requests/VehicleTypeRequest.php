@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Response;
 
-class CurrencyRequest extends FormRequest
+class VehicleTypeRequest extends FormRequest
 {
 
     public function rules()
@@ -25,18 +25,23 @@ class CurrencyRequest extends FormRequest
 	        }
 	        case 'POST':
 	        {
-			    return [
-			        'currency' => 'required|unique:currency',
-			        'symbol' => 'required',            
+			        return [
+			            'vehicle_type' => 'required|unique:vehicle_types',
+			            'pic_path' => 'required',            
+			            'category_id' => 'required', 
+			            'status' => 'required',
 			            
-			     ];	        		
+			        ];	        		
+	        	//}
 	        }
 	        case 'PUT':
 	        {
 				return [
 
-			            'currency' => 'unique:currency,currency,'.\Request::input('id'),
-			            'symbol' => 'required',            
+			            'vehicle_type' => 'unique:vehicle_types,vehicle_type,'.\Request::input('id'),
+			            'pic_path' => 'required', 
+			            'category_id' => 'required',            
+			            'status' => 'required',
 		        ];	     
 	        }
 	        case 'PATCH':

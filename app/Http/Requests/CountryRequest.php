@@ -66,7 +66,7 @@ class CountryRequest extends FormRequest
 	        {
 				return [
 
-			            'country_name' => 'unique:country,country_name,'.\Request::input('country_id'),
+			            'country_name' => 'unique:country,country_name,'.\Request::input('id'),
 			            'country_code' => 'required',            
 			            'status' => 'required',
 		        ];	     

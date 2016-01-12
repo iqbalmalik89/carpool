@@ -38,7 +38,7 @@ class EmailRequest extends FormRequest
 	        {
 				return [
 
-			            'template_name' => 'unique:email_templates,template_name,'.\Request::input('email_id'),
+			            'template_name' => 'unique:email_templates,template_name,'.\Request::input('id'),
 			            'subject' => 'required', 
 			            'template' => 'required',            
 			            'status' => 'required',
