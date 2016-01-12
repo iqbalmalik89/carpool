@@ -26,11 +26,12 @@ class SystemUserRepository
 
         if($systemUser->update())
         {
+            // clear cache
+            $this->clearCache($systemUser->id);
+
             // update user session
             $this->updateUserSession($systemUser->id);
 
-            // clear cache
-            $this->clearCache($systemUser->id);
             return $systemUser->id;
         }
         else
