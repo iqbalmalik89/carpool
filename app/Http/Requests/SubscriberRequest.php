@@ -35,7 +35,7 @@ class SubscriberRequest extends FormRequest
 	        {
 				return [
 
-			            'email' => 'unique:subscribers,email,'.\Request::input('subscriber_id'),
+			            'email' => 'unique:subscribers,email,'.\Request::input('id'),
 			            'ip' => 'required',            
 		        ];	     
 	        }
