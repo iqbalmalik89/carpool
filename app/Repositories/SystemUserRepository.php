@@ -260,7 +260,7 @@ class SystemUserRepository
             {
                 $systemUser = $systemUser->toArray();
                 if(!empty($systemUser['pic_path']))
-                    $systemUser['profile_pic'] = env('STORAGE_URL').'app/user_images/'.$systemUser['pic_path'];
+                    $systemUser['profile_pic'] = env('STORAGE_URL').'user_images/'.$systemUser['pic_path'];
                 else
                     $systemUser['profile_pic'] = '';
 

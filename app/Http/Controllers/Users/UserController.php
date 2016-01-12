@@ -86,7 +86,7 @@ class UserController extends Controller
         $resp = $this->repo->update($request);
         if($resp)
         {
-            return response()->json(['status' => 'success', 'message' => 'User updated successfully', 'code' => 200], 200);            
+            return response()->json(['status' => 'success', 'message' => 'User updated successfully', 'code' => 200], 200);
         }
         else
         {
