@@ -167,7 +167,7 @@ class TestimonialRepository
             {
                 $testimonial = $testimonial->toArray();
                 if(!empty($testimonial['pic_path']))
-                    $testimonial['image'] = env('STORAGE_URL').'app/testimonial_images/'.$testimonial['pic_path'];
+                    $testimonial['image'] = env('STORAGE_URL').'testimonial_images/'.$testimonial['pic_path'];
                 else
                     $testimonial['image'] = '';
 

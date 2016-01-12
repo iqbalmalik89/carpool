@@ -12,7 +12,6 @@ class UserRepository
     const CACHE = 'users-';
     public function update($request)
     {
-        echo $request;
         $user = User::find($request->input('user_id'));
         $user->first_name = $request->input('first_name');
         $user->last_name = $request->input('last_name');
@@ -260,7 +259,7 @@ class UserRepository
             {
                 $user = $user->toArray();
                 if(!empty($user['pic_path']))
-                    $user['profile_pic'] = env('STORAGE_URL').'app/site_user_images/'.$user['pic_path'];
+                    $user['profile_pic'] = env('STORAGE_URL').'site_user_images/'.$user['pic_path'];
                 else
                     $user['profile_pic'] = '';
 

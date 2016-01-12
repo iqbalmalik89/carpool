@@ -12,7 +12,6 @@ class SystemUserRepository
     const CACHE = 'system_users-';
     public function update($request)
     {
-        echo $request;
         $systemUser = SystemUser::find($request->input('user_id'));
         $systemUser->first_name = $request->input('first_name');
         $systemUser->last_name = $request->input('last_name');
@@ -27,11 +26,12 @@ class SystemUserRepository
 
         if($systemUser->update())
         {
+            // clear cache
+            $this->clearCache($systemUser->id);
+
             // update user session
             $this->updateUserSession($systemUser->id);
 
-            // clear cache
-            $this->clearCache($systemUser->id);
             return $systemUser->id;
         }
         else
@@ -260,7 +260,7 @@ class SystemUserRepository
             {
                 $systemUser = $systemUser->toArray();
                 if(!empty($systemUser['pic_path']))
-                    $systemUser['profile_pic'] = env('STORAGE_URL').'app/user_images/'.$systemUser['pic_path'];
+                    $systemUser['profile_pic'] = env('STORAGE_URL').'user_images/'.$systemUser['pic_path'];
                 else
                     $systemUser['profile_pic'] = '';
 
