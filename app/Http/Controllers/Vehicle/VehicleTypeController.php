@@ -34,7 +34,7 @@ class VehicleTypeController extends Controller
      */
     public function __construct(VehicleTypeRepository $vehicle_typeRepo)
     {
-        $this->repo = $vehicle_categoryRepo;
+        $this->repo = $vehicle_typeRepo;
         $this->middleware('guest', ['except' => 'getLogout']);
     }
 
@@ -47,7 +47,9 @@ class VehicleTypeController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'category' => 'required',
+            'vehicle_type' => 'required',
+            'pic_path' => 'required',
+            'category_id' => 'required',
             'status' => 'required',
         ]);
     }
@@ -58,43 +60,51 @@ class VehicleTypeController extends Controller
         die();
         if($resp)
         {
-            return response()->json(['status' => 'success', 'message' => 'Vehicle Category created successfully', 'code' => 200], 200);            
+            return response()->json(['status' => 'success', 'message' => 'Vehicle Type created successfully', 'code' => 200], 200);            
         }
         else
         {
-            return response()->json(['status' => 'error', 'message' => 'Vehicle Category not registered successfully.', 'code' => 400], 400);
+            return response()->json(['status' => 'error', 'message' => 'Vehicle Type not registered successfully.', 'code' => 400], 400);
         }
     }
 
-    public function save(VehicleCategoryRequest $request)
+    public function save(VehicleTypeRequest $request)
     {
         $resp = $this->repo->save($request);
         if($resp)
         {
-            return response()->json(['status' => 'success', 'message' => 'Vehicle Category created successfully', 'code' => 200], 200);            
+            return response()->json(['status' => 'success', 'message' => 'Vehicle Type created successfully', 'code' => 200], 200);            
         }
         else
         {
-            return response()->json(['status' => 'error', 'message' => 'Vehicle Category not registered successfully.', 'code' => 400], 400);
+            return response()->json(['status' => 'error', 'message' => 'Vehicle Type not registered successfully.', 'code' => 400], 400);
         }
     }
 
-  
+    public function upload(VehicleTypeRequest $request)
+    {
+        $uploaderObj = new Uploader();
+        $uploaderObj->size = array('width' =>100, 'height' => 100);
+        $uploaderObj->directory = 'vehicle_type_images';
+        $resp = $uploaderObj->uploadImage($request->file('vehicle_type_image_upload'));
+        return response()->json($resp);
+    }
 
-    public function update(VehicleCategoryRequest $request, $id)
+
+    public function update(VehicleTypeRequest $request, $id)
     {
         $resp = $this->repo->update($id, $request);
         if($resp)
         {
-            return response()->json(['status' => 'success', 'message' => 'Vehicle Category updated successfully', 'code' => 200], 200);            
+            return response()->json(['status' => 'success', 'message' => 'Vehicle Type updated successfully', 'code' => 200], 200);            
         }
         else
         {
-            return response()->json(['status' => 'error', 'message' => 'Vehicle Category not updated successfully.', 'code' => 400], 400);
+            return response()->json(['status' => 'error', 'message' => 'Vehicle Type not updated successfully.', 'code' => 400], 400);
         }
     }
 
-    public function listing(VehicleCategoryRequest $request)
+    public function listing(VehicleTypeRequest $request)
     {
         $page = $request->input('page');
         $limit = $request->input('limit');
@@ -111,24 +121,24 @@ class VehicleTypeController extends Controller
         $response = $this->repo->destroy($id);
         if(!empty($response))
         {
-            return response()->json(['status' => 'success', 'message' => 'Vehicle Category deleted successfully', 'code' => 200], 200);
+            return response()->json(['status' => 'success', 'message' => 'Vehicle Type deleted successfully', 'code' => 200], 200);
         }
         else
         {
-            return response()->json(['status' => 'error', 'message' => 'Vehicle Category not found', 'code' => 404], 404);
+            return response()->json(['status' => 'error', 'message' => 'Vehicle Type not found', 'code' => 404], 404);
         }
     }
 
     public function get($id)
     {
-        $vehicle_categoryData = $this->repo->get($id, false);
-        if(!empty($vehicle_categoryData))
+        $vehicle_typeData = $this->repo->get($id, false);
+        if(!empty($vehicle_typeData))
         {
-            return response()->json(['status' => 'success', 'message' => '', 'data' => $vehicle_categoryData, 'code' => 200], 200);
+            return response()->json(['status' => 'success', 'message' => '', 'data' => $vehicle_typeData, 'code' => 200], 200);
         }
         else
         {
-            return response()->json(['status' => 'error', 'message' => 'Vehicle Category not found', 'code' => 404], 404);            
+            return response()->json(['status' => 'error', 'message' => 'Vehicle Type not found', 'code' => 404], 404);            
         }
     }
 

@@ -25,6 +25,14 @@ class VehicleTypeRequest extends FormRequest
 	        }
 	        case 'POST':
 	        {
+	        	if($route == 'api/vehicle_type/image')
+	        	{
+					return [
+			            'vehicle_type_image_upload' => 'required|image',
+			        ];	        		
+	        	}
+	        	else
+	        	{
 			        return [
 			            'vehicle_type' => 'required|unique:vehicle_types',
 			            'pic_path' => 'required',            
@@ -32,7 +40,7 @@ class VehicleTypeRequest extends FormRequest
 			            'status' => 'required',
 			            
 			        ];	        		
-	        	//}
+	        	}
 	        }
 	        case 'PUT':
 	        {
