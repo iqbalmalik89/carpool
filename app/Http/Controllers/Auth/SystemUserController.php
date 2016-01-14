@@ -200,7 +200,7 @@ class SystemUserController extends Controller
         }
         else
         {
-            return response()->json(['status' => 'error', 'message' => 'user not found', 'code' => 404], 404);
+            return response()->json(['status' => 'error', 'message' => 'user cannot be deleted', 'code' => 200], 200);
         }
     }
 

@@ -199,6 +199,7 @@ class SystemUserRepository
     public function destroy($id)
     {
         $user = $this->get($id, true);
+
         if(!empty($user))
         {
             $user->delete();

@@ -139,6 +139,9 @@ $.userlisting = function(data) {
 	        		var userStatusClass = 'btn-inverse';
 	        	}
 
+	        	// hide delete for super admin
+	        	var	deleteHtml = '<a href="javascript:void(0);" onclick="$.confirmDel('+userRec.id+', this, \'deleteUser\');" data-entityname="'+userRec.first_name + ' ' + userRec.last_name+'" class="btn btn-danger btn-xs" title="Delete"><i class="fa fa-times"></i></a>';
+
 	 			userHtml += '<tr>\
 	                            <td class="text-left">\
 									'+userImage + userRec.first_name + ' ' + userRec.last_name +'\
@@ -149,7 +152,7 @@ $.userlisting = function(data) {
 	                            <td class="text-right">\
 	                              <a href="javascript:void(0);"><button class="btn '+userStatusClass+' btn-xs">'+ucfirst(userRec.status)+'</button></a>\
 	                              <a href="javascript:void(0);" onclick="$.showEditPopup('+userRec.id+');" class="btn btn-default btn-xs" data-target="#user_popup" data-modal-options="slide-down" data-content-options="modal-sm h-center" title="Edit"><i class="fa fa-pencil"></i></a>\
-	                              <a href="javascript:void(0);" onclick="$.confirmDel('+userRec.id+', this, \'deleteUser\');" data-entityname="'+userRec.first_name + ' ' + userRec.last_name+'" class="btn btn-danger btn-xs" title="Delete"><i class="fa fa-times"></i></a>\
+	                              '+deleteHtml+'\
 	                            </td>\
 	                          </tr>';
 	        });
