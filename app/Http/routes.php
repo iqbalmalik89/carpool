@@ -136,7 +136,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
 	Route::get('country', 'App\AdminController@showCountry');
 	Route::get('language', 'App\AdminController@showLanguage');
 	Route::get('currency', 'App\AdminController@showCurrency');
-	Route::get('vehicle-type', 'App\AdminController@showVehicleTypes');
+	Route::get('vehicle-types', 'App\AdminController@showVehicleTypes');
 
 });
 

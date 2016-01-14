@@ -23,9 +23,9 @@
                           <li><a href="{{\URL::to('admin/country')}}"><i class="fa fa-globe"></i> <span>Country</span></a></li>
                           <li><a href="{{\URL::to('admin/language')}}"><i class="fa fa-language"></i> <span>Language</span></a></li>
                           <li><a href="{{\URL::to('admin/currency')}}"><i class="fa fa-usd"></i> <span>Currency</span></a></li>
-                          <li><a href="{{\URL::to('admin/radius')}}"><i class="fa fa-usd"></i> <span>Radius</span></a></li>
-                          <li><a href="{{\URL::to('admin/vehicle-brands')}}"><i class="fa fa-usd"></i> <span>Vehicle Brands</span></a></li>
-                          <li><a href="{{\URL::to('admin/vehicle-types')}}"><i class="fa fa-usd"></i> <span>Vehicle Types</span></a></li>
+                          <li><a href="{{\URL::to('admin/radius')}}"><i class="fa fa-dot-circle-o"></i> <span>Radius</span></a></li>
+                          <li><a href="{{\URL::to('admin/vehicle-brands')}}"><i class="fa fa-car"></i> <span>Vehicle Brands</span></a></li>
+                          <li><a href="{{\URL::to('admin/vehicle-types')}}"><i class="fa fa-cubes"></i> <span>Vehicle Types</span></a></li>
                         </ul>
                       </li>
 
