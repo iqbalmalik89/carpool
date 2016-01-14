@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Repositories\SystemUserRepository;
+use App\Repositories\VehicleCategoryRepository;
 
 class AdminController extends Controller
 {
@@ -86,7 +87,17 @@ class AdminController extends Controller
   {
     return view('admin/testimonial/testimonial');    
   }
-  
+    
+  public function showVehicleTypes()
+  {
+
+    // Get categories
+    $vehicleRepo = new VehicleCategoryRepository();
+    $categories = $vehicleRepo->listing(1, 0);
+    $data = array('categories' => $categories['data']);
+   return view('admin/vehicle/vehicle_type', $data);
+  }
+
   public function showradius()
   {
     return view('admin/location/radius');

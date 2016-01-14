@@ -12,9 +12,9 @@ class VehicleTypeRepository
     const CACHE = 'vehicle_type-';
     public function update($id, $request)
     {
-
         $vehicle_type = VehicleType::find($id);
-        if (!empty($vehicle_category))
+        
+        if (!empty($vehicle_type))
         {
             $vehicle_type->vehicle_type = $request->input('vehicle_type');
             $vehicle_type->pic_path = $request->input('pic_path');
@@ -149,6 +149,8 @@ class VehicleTypeRepository
 
     public function get($id, $elequent)
     {
+        $catRepo = new VehicleCategoryRepository();
+
         $cacheKey = self::CACHE . $id;
 
         if($elequent)
@@ -157,6 +159,7 @@ class VehicleTypeRepository
         }
 
         $cachedData = \Cache::has($cacheKey);
+
         if(empty($cachedData))
         {
             $vehicle_type = VehicleType::find($id);
@@ -164,6 +167,15 @@ class VehicleTypeRepository
             if(!empty($vehicle_type))
             {
                 $vehicle_type = $vehicle_type->toArray();
+
+                // get cat name
+                $catData = $catRepo->get($vehicle_type['category_id'], false);
+                if(!empty($catData))
+                {
+                    $vehicle_type['category'] = $catData['category'];
+                }
+                else
+                    $vehicle_type['category'] = '';
 
                 if(!empty($vehicle_type['pic_path']))
                     $vehicle_type['image'] = env('STORAGE_URL').'vehicle_type_images/'.$vehicle_type['pic_path'];

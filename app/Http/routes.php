@@ -97,6 +97,7 @@ Route::group(['prefix' => 'api'], function ()
  	Route::get('vehicle_type', 'Vehicle\VehicleTypeController@listing'); 	
  	Route::put('vehicle_type/{id}', 'Vehicle\VehicleTypeController@update');
  	Route::delete('vehicle_type/{id}', 'Vehicle\VehicleTypeController@destroy');
+	Route::post('vehicle_type/image', 'Vehicle\VehicleTypeController@upload');
 
  	//Subscriber
  	Route::post('subscriber', 'Email\SubscriberController@save');
@@ -135,6 +136,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
 	Route::get('country', 'App\AdminController@showCountry');
 	Route::get('language', 'App\AdminController@showLanguage');
 	Route::get('currency', 'App\AdminController@showCurrency');
+	Route::get('vehicle-type', 'App\AdminController@showVehicleTypes');
 
 });
 

@@ -1,5 +1,5 @@
 $(document).ready( function () {
-  $( "input" ).keypress(function() {
+  $( "input, select" ).keypress(function() {
     var id = '#' + $(this).attr('id');
     if($(id).parent().hasClass('has-error'))
       $(id).parent().removeClass('has-error');
@@ -10,7 +10,11 @@ $(document).ready( function () {
   });
 
 
-
+  $("select").on('change', function(){
+    var id = '#' + $(this).attr('id');
+    if($(id).parent().hasClass('has-error'))
+      $(id).parent().removeClass('has-error');
+  });
 
 
 });
