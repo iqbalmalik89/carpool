@@ -91,6 +91,13 @@ Route::group(['prefix' => 'api'], function ()
  	Route::put('vehicle_category/{id}', 'Vehicle\VehicleCategoryController@update');
  	Route::delete('vehicle_category/{id}', 'Vehicle\VehicleCategoryController@destroy');
 
+	//Vehicle Type
+	Route::post('vehicle_type', 'Vehicle\VehicleTypeController@save');
+ 	Route::get('vehicle_type/{id}', 'Vehicle\VehicleTypeController@get');
+ 	Route::get('vehicle_type', 'Vehicle\VehicleTypeController@listing'); 	
+ 	Route::put('vehicle_type/{id}', 'Vehicle\VehicleTypeController@update');
+ 	Route::delete('vehicle_type/{id}', 'Vehicle\VehicleTypeController@destroy');
+
  	//Subscriber
  	Route::post('subscriber', 'Email\SubscriberController@save');
  	Route::get('subscriber/{id}', 'Email\SubscriberController@get');

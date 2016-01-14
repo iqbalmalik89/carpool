@@ -45,7 +45,7 @@ class TestimonialRequest extends FormRequest
 	        case 'PUT':
 	        {
 				return [
-		            'name' => 'unique:testimonial,name,'.\Request::input('testimonial_id'),
+		            'name' => 'unique:testimonial,name,'.\Request::input('id'),
 			        'description' => 'required',            
 			        'pic_path' => 'required',
 			        'status' => 'required',
